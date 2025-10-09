@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Splendor Herbs</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <!-- Contenedores vacíos donde se insertarán -->
+  <div id="header"></div>
+
+  <main>
+    <h1>Bienvenido a Splendor Herbs 🌿</h1>
+  </main>
+
+  <div id="footer"></div>
+
+  <script>
+    // Cargar header y footer automáticamente
+    async function loadHTML(id, file) {
+      const res = await fetch(file);
+      const text = await res.text();
+      document.getElementById(id).innerHTML = text;
+    }
+
+    loadHTML('header', 'header.html');
+    loadHTML('footer', 'footer.html');
+  </script>
+</body>
+</html>
