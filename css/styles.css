@@ -13,8 +13,8 @@ body {
 /* === HEADER === */
 .main-header {
   background-color: #fff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  padding: 10px 0;
+  box-shadow: 0 6px 4px rgba(0, 0, 0, 0.1);
+  padding: 20px 0;
 }
 
 .container {
@@ -27,7 +27,7 @@ body {
 }
 
 .logo img {
-  height: 50px;
+  height: 60px;
 }
 
 .nav-links {
@@ -51,7 +51,7 @@ body {
 .main-footer {
   background-color: #007a33;
   color: white;
-  padding: 20px 0;
+  padding: 80px 0;
   text-align: left;
 }
 
