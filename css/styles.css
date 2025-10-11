@@ -16,6 +16,33 @@ body {
   flex: 1;
 }
 
+.hero {
+  width: 98%;
+  margin: 15px auto; /* margen arriba y abajo */
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.hero img {
+  width: 100%;
+  height: auto; /* mantiene proporciones */
+  display: block; /* elimina espacios blancos abajo */
+}
+
+.hero-text {
+  text-align: center;
+  margin-top: 20px; /* espacio entre la imagen y el texto */
+}
+.hero-text b{
+  display: block; /* para que ocupe toda la línea */
+  margin-bottom: 60px; /* ajusta la distancia según prefieras */
+  font-weight: 500; /* opcional: un poco menos grueso */
+}
+.hero-text h1 {
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: #007a33; /* verde principal */
+}
 /* === HEADER === */
 .main-header {
   background-color: #fff;
