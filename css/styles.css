@@ -8,13 +8,19 @@
 body {
   font-family: "Poppins", sans-serif;
   color: #333;
+  flex-direction: column;
+  min-height: 100vh;
+  display: flex;
+}
+.main-content {
+  flex: 1;
 }
 
 /* === HEADER === */
 .main-header {
   background-color: #fff;
   box-shadow: 0 6px 4px rgba(0, 0, 0, 0.1);
-  padding: 20px 0;
+  padding: 25px 0;
 }
 
 .container {
@@ -27,31 +33,83 @@ body {
 }
 
 .logo img {
-  height: 50px;
+  height: 60px;
 }
 
-.nav-links {
+.nav-menu {
   list-style: none;
   display: flex;
   gap: 2rem;
 }
 
-.nav-links a {
+.nav-menu a {
   text-decoration: none;
   color: #007a33; /* Verde Splendor Herbs */
   font-weight: 600;
   transition: color 0.3s ease;
 }
 
-.nav-links a:hover {
+.nav-menu a:hover {
   color: #004d1a; /* tono más oscuro al pasar el cursor */
 }
 
+/* -------- Overlay base -------- */
+.overlay {
+  position: relative;
+}
+
+.overlay-menu {
+  display: none;
+  position: absolute;
+  top: 100%; /* justo debajo del texto principal */
+  left: 0;
+  background: white;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+  border-radius: 6px;
+  padding: 10px 0;
+  list-style: none;
+  min-width: 160px;
+  z-index: 10;
+  opacity: 0;
+  transform: translateY(5px);
+  transition: all 0.25s ease;
+}
+
+/* Cuando está activa */
+.overlay.active .overlay-menu {
+  display: block;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.overlay-menu li {
+  padding: 6px 18px;
+}
+
+.overlay-menu a {
+  color: #222;
+  font-weight: 500;
+  text-decoration: none;
+  display: block;
+}
+
+.overlay-menu a:hover {
+  background-color: #f2f2f2;
+  color: #0d6600;
+}
+
+.menu-toggle {
+  cursor: pointer;
+  position: relative;
+  z-index: 20;
+}
+
+
 /* === FOOTER === */
 .main-footer {
-  background-color: #007a33;
+  background-color: #008339;
   color: white;
-  padding: 80px 0;
+  padding: 50px 0;
   text-align: left;
 }
 
@@ -62,7 +120,7 @@ body {
   display: flex;
   flex-direction: column;
   gap: 8px;
-  font-size: 0.95rem;
+  font-size: 1rem;
 }
 
 .footer-content p {
