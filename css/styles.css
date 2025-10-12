@@ -32,13 +32,13 @@ body {
 .hero-text {
   text-align: center;
   max-width: 900px;       /* limita el ancho del bloque */
-  margin: 70px auto;      /* agrega margen arriba y abajo, y centra horizontalmente */
+  margin: 10px auto;      /* agrega margen arriba y abajo, y centra horizontalmente */
   padding: 0 40px;        /* margen interno a los lados */
 }
 .hero-text b{
   display: block; /* para que ocupe toda la línea */
   margin-bottom: 60px; /* ajusta la distancia según prefieras */
-  font-weight: 500; /* opcional: un poco menos grueso */
+  font-weight: bold; /* opcional: un poco menos grueso */
 }
 .hero-text h1 {
   font-size: 2.2rem;
