@@ -13,7 +13,7 @@ body {
   display: flex;
 }
 .main-content {
-  flex: 1;
+  margin-top: 110px; /* ajusta según el tamaño del header */
 }
 
 .hero {
@@ -31,7 +31,9 @@ body {
 
 .hero-text {
   text-align: center;
-  margin-top: 20px; /* espacio entre la imagen y el texto */
+  max-width: 900px;       /* limita el ancho del bloque */
+  margin: 70px auto;      /* agrega margen arriba y abajo, y centra horizontalmente */
+  padding: 0 40px;        /* margen interno a los lados */
 }
 .hero-text b{
   display: block; /* para que ocupe toda la línea */
@@ -41,13 +43,33 @@ body {
 .hero-text h1 {
   font-size: 2.2rem;
   font-weight: 700;
+  margin-bottom: 30px;
   color: #007a33; /* verde principal */
+}
+
+.hero-text p {
+  font-size: 1rem !important;
+  font-weight: 500;
+  line-height: 1.6;
+  color: #1d1d1d;
+  margin-top: 20px;       /* espacio superior */
+  margin-bottom: 40px;    /* espacio inferior */
+  text-align: justify;    /* texto ordenado visualmente */
 }
 /* === HEADER === */
 .main-header {
   background-color: #fff;
   box-shadow: 0 6px 4px rgba(0, 0, 0, 0.1);
   padding: 25px 0;
+
+  /* 🔒 Mantiene el header fijo arriba */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+
+  /* 🔝 Asegura que quede encima de todo */
+  z-index: 1000;
 }
 
 .container {
