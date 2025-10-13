@@ -46,29 +46,82 @@ body {
   margin-bottom: 30px;
   color: #007a33; /* verde principal */
 }
-
+.hero-text h2 {
+  margin-top: 50px;
+  margin-bottom: 50px !important;
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 30px;
+  color: #007a33; /* verde principal */
+}
+.hero-text h3 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 30px;
+  color: #007a33; /* verde principal */
+}
 .hero-text p {
-  font-size: 1rem !important;
+  font-size: 1rem;
   font-weight: 200;
-  line-height: 1.6;
+  line-height: 1.8;
   color: #1d1d1d;
   margin-top: 20px;       /* espacio superior */
   margin-bottom: 40px;    /* espacio inferior */
   text-align: justify;    /* texto ordenado visualmente */
 }
-/* === HEADER === */
+
+.certificados {
+  display: flex;
+  justify-content: center;  /* centra horizontalmente */
+  align-items: center;      /* centra verticalmente */
+  gap: 60px;                /* espacio entre las imágenes */
+  margin: 40px auto;        /* margen arriba y abajo */
+}
+
+.certificados img {
+  width: 200px;             
+  height: auto;             
+  object-fit: contain;
+}
+
+/*Página por qué nosotros*/
+.pq{
+  flex: 1;
+  max-width: 550px;
+  text-align: justify;
+  font-size: 1rem;
+  line-height: 1.6;
+  margin: 0;
+  padding-left: 90px !important;
+}
+.contenedorpq{
+  display: flex;
+  justify-content: center;  /* centra horizontalmente */
+  align-items: center;      /* centra verticalmente */
+  gap: 20px;                /* espacio entre las imágenes */
+  margin: 30px auto;        /* margen arriba y abajo */
+  max-width: 1000px;
+}
+.contenedorpq img{
+  width: 180px;             
+  height: auto;             
+  object-fit: contain;
+  margin-right: 10px;
+}
+
+/*HEADER*/
 .main-header {
   background-color: #fff;
   box-shadow: 0 6px 4px rgba(0, 0, 0, 0.1);
   padding: 25px 0;
 
-  /* 🔒 Mantiene el header fijo arriba */
+  /*Mantiene el header fijo arriba */
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
 
-  /* 🔝 Asegura que quede encima de todo */
+  /*Asegura que quede encima de todo */
   z-index: 1000;
 }
 
@@ -84,7 +137,9 @@ body {
 .logo img {
   height: 60px;
 }
-
+.logo img:hover{
+  transform: scale(1.05);
+}
 .nav-menu {
   list-style: none;
   display: flex;
@@ -93,13 +148,15 @@ body {
 
 .nav-menu a {
   text-decoration: none;
-  color: #007a33; /* Verde Splendor Herbs */
+  color: #007a33;
   font-weight: 600;
-  transition: color 0.3s ease;
+  transition: color 0.3s ease, transform 0.2s ease;
+  display: inline-block;
 }
 
 .nav-menu a:hover {
-  color: #004d1a; /* tono más oscuro al pasar el cursor */
+  color: #004d1a;
+  transform: scale(1.05);
 }
 
 /* -------- Overlay base -------- */
