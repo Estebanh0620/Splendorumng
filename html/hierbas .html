@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Hierbas aromaticas – Splendor Herbs</title>
+  <link rel="stylesheet" href="../css/styles.css"/>
+
+  <!-- Estilos interacción-->
+  <style>
+  
+    .hero__overlay.centered{
+      display:flex; align-items:center; justify-content:center; text-align:center;
+      background: rgba(0,0,0,.35);
+    }
+    .hero__overlay.centered h1{ margin:0; max-width:900px; }
+
+    /* Grilla de tarjetas */
+    .catalogo{ width:min(1200px,94%); margin:28px auto 40px; }
+    .tiles{ display:grid; grid-template-columns:repeat(4,minmax(160px,1fr)); gap:18px; }
+    .tile{ position:relative; aspect-ratio:4/3; border-radius:6px; overflow:hidden; cursor:pointer;
+           box-shadow:0 4px 10px rgba(0,0,0,.12); transition:transform .2s, box-shadow .2s; }
+    .tile:hover{ transform:translateY(-2px); box-shadow:0 8px 18px rgba(0,0,0,.18); }
+    .tile img{ width:100%; height:100%; object-fit:cover; display:block; }
+    .tile__label{
+      position:absolute; left:8px; right:8px; bottom:8px;
+      padding:6px 10px; border-radius:4px; background:rgba(0,0,0,.45);
+      color:#fff; font-weight:600; text-align:center; text-shadow:0 1px 4px rgba(0,0,0,.35);
+    }
+
+    /* resultados */
+    .results{ width:min(1200px,94%); margin:10px auto 80px; display:grid; gap:24px; }
+    .empty{ text-align:center; color:#666; padding:16px 0; }
+
+    /* Ficha */
+    .card{ position:relative; display:grid; grid-template-columns:1.2fr 1fr; gap:16px;
+           background:#fff; border-radius:8px; overflow:hidden;
+           border:1px solid #e6e6e6; box-shadow:0 6px 16px rgba(0,0,0,.12);
+           animation:pop .2s ease-out; }
+    .card__img{ width:100%; height:100%; object-fit:cover; display:block; }
+    .card__body{ padding:16px 18px; }
+    .card__title{ color:#1a8b59; font-weight:700; margin:0 0 10px; font-size:1.2rem; display:flex; align-items:center; gap:8px; }
+    .badge{ height:8px; width:8px; border-radius:999px; background:#1a8b59; display:inline-block; }
+    .meta{ margin-top:8px; font-size:.94rem; color:#444; line-height:1.65; }
+    .meta b{ color:#1a8b59; }
+
+    /* Botón “X” */
+    .card__close{
+      position:absolute; top:10px; right:10px; width:32px; height:32px; line-height:30px;
+      text-align:center; border-radius:6px; border:1px solid #1a8b59; background:#fff;
+      color:#1a8b59; font-weight:800; cursor:pointer; user-select:none;
+    }
+    .card__close:hover{ background:#1a8b59; color:#fff; }
+
+    @keyframes pop{ from{ transform:scale(.985); opacity:.8 } to{ transform:scale(1); opacity:1 } }
+
+    @media (max-width: 920px){
+      .tiles{ grid-template-columns:repeat(2,1fr); }
+      .card{ grid-template-columns:1fr; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header dinámico -->
+  <div id="header"></div>
+
+  <main class="main-content">
+    <!-- HERO -->
+    <section class="hero hero--cover">
+      <img src="../img/Hierbas aromáticas.jpg" alt="Hierbas aromaticas "/>
+      <div class="hero__overlay centered">
+        <h1 style="font-size: 3.5rem; font-weight: 800; color: #fff; text-shadow: 0 3px 6px rgba(0,0,0,.4);">
+            Hierbas aromaticas </h1>
+      </div>
+    </section>
+
+    <!-- Cuatro tarjetas -->
+    <section class="catalogo">
+      <div class="tiles" id="tiles">
+        <div class="tile" data-key="Menta" aria-label="Menta">
+          <img src="../img/Menta.png" alt="Menta"/>
+          <div class="tile__label">Menta</div>
+        </div>
+        <div class="tile" data-key="Romero" aria-label="Romero">
+          <img src="../img/Romero.png" alt="Romero"/>
+          <div class="tile__label">Romero</div>
+        </div>
+        <div class="tile" data-key="Orégano" aria-label="Orégano">
+          <img src="../img/oregano.png" alt="Orégano"/>
+          <div class="tile__label">Orégano</div>
+        </div>
+        <div class="tile" data-key="Mejorana" aria-label="Mejorana">
+          <img src="../img/Mejorana.jpg" alt="Mejorana"/>
+          <div class="tile__label">Mejorana</div>
+        </div>
+        <div class="tile" data-key="Estragón" aria-label="Estragón">
+          <img src="../img/Estragón.png" alt="Estragón"/>
+          <div class="tile__label">Estragón</div>
+        </div>
+        <div class="tile" data-key="Laurel" aria-label="Laurel">
+          <img src="../img/Laurel.png" alt="Laurel"/>
+          <div class="tile__label">Laurel</div>
+        </div>
+        <div class="tile" data-key="Eneldo" aria-label="Eneldo">
+          <img src="../img/Eneldo.jpg" alt="Eneldo"/>
+          <div class="tile__label">Eneldo</div>
+        </div>
+        <div class="tile" data-key="Tomillo" aria-label="Tomillo">
+          <img src="../img/Tomillo.png" alt="Tomillo"/>
+          <div class="tile__label">Tomillo</div>
+        </div>
+        <div class="tile" data-key="Albahaca" aria-label="Albahaca">
+          <img src="../img/Albahaca.png" alt="Albahaca"/>
+          <div class="tile__label">Albahaca</div>
+        </div>
+        <div class="tile" data-key="Hierbabuena" aria-label="Hierbabuena">
+          <img src="../img/Hierbabuena.png" alt="Hierbabuena"/>
+          <div class="tile__label">Hierbabuena</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Fichas -->
+    <section class="results" id="results">
+      <p class="empty">Haz clic en una hierba aromatica para ver su ficha.</p>
+    </section>
+
+  <!-- Footer dinámico -->
+  <div id="footer"></div>
+
+  <!-- JS: cargar header/footer e interacción -->
+  <script>
+    // Cargar header/footer como en tus otras páginas
+    async function loadHTML(id, file, cb){
+      const res = await fetch(file);
+      document.getElementById(id).innerHTML = await res.text();
+      if(cb) cb();
+    }
+    loadHTML('header', 'header.html', () => {
+      const s=document.createElement('script'); s.src='../js/menus.js'; document.body.appendChild(s);
+    });
+    loadHTML('footer', 'footer.html');
+
+    // Datos de ejemplo para la ficha (ajústalos a tu contenido real)
+    const DATA = {
+      Menta: {
+        variedad:"Común",
+        origen:"Cundinamarca, Colombia",
+        empaque:"14 a 15 libras por tabaco",
+        temp:"32°F - 41°F (0°C – 5°C)",
+        descripcion:"Planta refrescante, de tallos verdes y hojas dentadas, empleada en bebidas, postres y medicina natural."
+      },
+      Romero: {
+        variedad:"Común",
+        origen:"Cundinamarca, Colombia",
+        empaque:"14 a 15 libras por tabaco",
+        temp:"41°F - 50°F (5°C – 10°C)",
+        descripcion:"Planta perenne de hojas finas y verde oscuro, con aroma intenso y ligeramente amargo. Muy usada en carnes, guisos y panes."
+      },
+      Orégano: {
+        variedad:"Mediterráneo",
+        origen:"Boyacá, Colombia",
+        empaque:"14 a 15 libras por tabaco",
+        temp:"41°F - 50°F (5°C – 10°C)",
+        descripcion:"Hierba mediterránea de sabor fuerte y ligeramente picante, rica en aceites esenciales con efectos digestivos."
+      },
+      Mejorana: {
+        variedad:"Dulce",
+        origen:"Tolima, Colombia",
+        empaque:"14 a 15 libras por tabaco",
+        temp:"41°F - 50°F (5°C – 10°C)",
+        descripcion:"Planta de aroma dulce y suave, pariente del orégano, empleada en guisos, sopas y en la industria alimentaria."
+      },
+      Albahaca: {
+        variedad:"Genovesa",
+        origen:"Tolima, Colombia",
+        empaque:"14 a 15 libras por tabaco",
+        temp:"50°F - 55°F (10°C – 12,8°C)",
+        descripcion:"Hierba de hojas verdes brillantes y aroma fresco, indispensable en la cocina italiana y base del pesto."
+      },
+      Estragón: {
+        variedad:"Francés",
+        origen:"Antioquia, Colombia",
+        empaque:"14 a 15 libras por tabaco",
+        temp:"41°F - 50°F (5°C – 10°C)",
+        descripcion:"Hierba de sabor anisado y fresco, muy valorada en la cocina gourmet y en la preparación de vinagres aromáticos."
+      },
+      Laurel: {
+        variedad:"Común",
+        origen:"Nariño, Colombia",
+        empaque:"14 a 15 libras por tabaco",
+        temp:"41°F - 50°F (5°C – 10°C)",
+        descripcion:"Arbusto de hojas coriáceas, empleadas secas para aromatizar guisos, sopas y marinados."
+      },
+      Eneldo: {
+        variedad:"Fino",
+        origen:"Tolima, Colombia",
+        empaque:"14 a 15 libras por tabaco",
+        temp:"32°F - 41°F (0°C – 5°C)",
+        descripcion:"Hierba de tallos finos y hojas filamentosas, de sabor anisado, muy usada en encurtidos y platos con pescado."
+      },
+      Tomillo: {
+        variedad:"Común",
+        origen:"Cundinamarca, Colombia",
+        empaque:"14 a 15 libras por tabaco",
+        temp:"41°F - 50°F (5°C – 10°C)",
+        descripcion:"Planta pequeña de sabor intenso y terroso, conocida por su resistencia y propiedades antimicrobianas."
+      },
+      Hierbabuena: {
+        variedad:"Común",
+        origen:"Boyacá, Colombia",
+        empaque:"14 a 15 libras por tabaco",
+        temp:"32°F - 41°F (0°C – 5°C)",
+        descripcion:"Variedad de menta de sabor más suave y dulce, usada en infusiones, repostería y coctelería."
+      }
+    };
+
+    const tiles   = document.getElementById('tiles');
+    const results = document.getElementById('results');
+
+    function showEmpty(){
+      results.innerHTML = '<p class="empty">Haz clic en una hortaliza para ver su ficha.</p>';
+    }
+
+    function createCard(key){
+      const info = DATA[key];
+      const imgJpg = `../img/${key}.jpg`;
+      const imgPng = `../img/${key}.png`;
+
+      const card = document.createElement('article');
+      card.className = 'card';
+      card.setAttribute('data-key', key);
+      card.innerHTML = `
+        <button class="card__close" aria-label="Cerrar ${key}">✕</button>
+        <img class="card__img" src="${imgJpg}" onerror="this.onerror=null;this.src='${imgPng}'" alt="${key}">
+        <div class="card__body">
+          <h3 class="card__title"><span class="badge"></span> ${key}</h3>
+          <p class="meta">${info.descripcion}</p>
+          <p class="meta"><b>Variedad:</b> ${info.variedad}</p>
+          <p class="meta"><b>Origen:</b> ${info.origen}</p>
+          <p class="meta"><b>Empaque:</b> ${info.empaque}</p>
+          <p class="meta"><b>Temperatura de almacenamiento:</b> ${info.temp}</p>
+        </div>
+      `;
+      return card;
+    }
+
+    // Abrir ficha 
+    tiles.addEventListener('click', (e)=>{
+      const tile = e.target.closest('.tile');
+      if(!tile) return;
+      const key = tile.dataset.key;
+
+      results.innerHTML = '';                 // asegura una sola abierta
+      const card = createCard(key);
+      results.appendChild(card);
+      card.scrollIntoView({behavior:'smooth', block:'center'});
+    });
+
+    // Cerrar con la X
+    results.addEventListener('click', (e)=>{
+      if(e.target.matches('.card__close')) showEmpty();
+    });
+
+    // Cerrar al hacer clic fuera de la ficha
+    document.addEventListener('click', (e)=>{
+      const card = results.querySelector('.card');
+      if(!card) return;
+      const clickedInsideCard = e.composedPath().includes(card);
+      const clickedTile = e.target.closest('.tile');
+      if(!clickedInsideCard && !clickedTile) showEmpty();
+    });
+
+    // Estado
+    showEmpty();
+  </script>
+</body>
+</html>
