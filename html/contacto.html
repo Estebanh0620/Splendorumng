@@ -7,16 +7,13 @@
   <link rel="stylesheet" href="../css/styles.css">
 </head>
 <body>
-
-  <!-- Contenedores -->
+  <!-- Contenedores-->
   <div id="header"></div>
 
   <main class = "main-content">
     <section class="hero">
       <img src="../img/Pagina index.png" alt="Imagen principal index">
     </section> 
-
-  <!--formulario-->
   <style>
     .contacto { width: min(1050px, 100%); margin: 0 auto 80px; }
     .contacto h2 { text-align:center; margin: 26px 0 18px; color:#1a8b59; }
@@ -45,44 +42,51 @@
 </head>
 <body>
 
-    <!-- FORMULARIO -->
+  <!-- Header -->
+  <div id="header"></div>
+
+  <main class="main-content">
     <section class="contacto">
       <div style="text-align:center;">
-  <h2 class="section__title" style="display:inline-block; border-bottom:4px solid #1a8b59; padding-bottom:.2rem;">
-    CONTACTANOS
-  </h2>
-</div>
+        <h2 class="section__title" style="display:inline-block; border-bottom:4px solid #1a8b59; padding-bottom:.2rem;">
+          CONTACTANOS
+        </h2>
+      </div>
 
+      <!-- Formulario  -->
+      <form class="form" id="contactForm" method="POST" action="https://formsubmit.co/herbssplendor@gmail.com" novalidate>
+        <!-- Correo-->
+        <input type="hidden" name="_next" value="http://127.0.0.1:5500/html/gracias.html"> <!-- Página de agradecimiento -->
+        <input type="hidden" name="_captcha" value="false">
 
-      <form class="form" id="contactForm" novalidate>
         <div class="field">
           <label for="email">Correo electrónico</label>
-          <input id="email" name="email" type="email" required placeholder="tucorreo@gmail.com"/>
+          <input id="email" name="email" type="email" required placeholder="tucorreo@gmail.com">
         </div>
 
         <div class="field">
           <label for="nombres">Primer y segundo nombre de contacto</label>
-          <input id="nombres" name="nombres" type="text" required />
+          <input id="nombres" name="nombres" type="text" required>
         </div>
 
         <div class="field">
           <label for="celular">Celular</label>
-          <input id="celular" name="celular" type="tel" />
+          <input id="celular" name="celular" type="tel">
         </div>
 
         <div class="field">
           <label for="ciudad">Ciudad</label>
-          <input id="ciudad" name="ciudad" type="text" />
+          <input id="ciudad" name="ciudad" type="text">
         </div>
 
         <div class="field">
           <label for="direccion">Dirección</label>
-          <input id="direccion" name="direccion" type="text" />
+          <input id="direccion" name="direccion" type="text">
         </div>
 
         <div class="field">
           <label for="pais">País</label>
-          <input id="pais" name="pais" type="text" />
+          <input id="pais" name="pais" type="text">
         </div>
 
         <div class="field">
@@ -93,16 +97,13 @@
         <div class="actions">
           <button class="btn" type="submit">ENVIAR</button>
         </div>
-
-        <p class="note">Al hacer clic en enviar, aceptas los <a href="#" style="color:#1a8b59;text-decoration:none;">Términos de uso y privacidad</a></p>
-        <div id="ok" class="success">✅ ¡Gracias! Tu mensaje fue recibido. Te contactaremos pronto.</div>
       </form>
     </section>
+  </main>
 
-  <!-- Footer dinámico -->
+  <!-- Footer -->
   <div id="footer"></div>
 
-  <!-- Carga header/footer y JS del menú -->
   <script>
     async function loadHTML(id, file, cb){
       const res = await fetch(file);
@@ -113,16 +114,6 @@
       const s=document.createElement('script'); s.src='../js/menus.js'; document.body.appendChild(s);
     });
     loadHTML('footer', 'footer.html');
-
-    // Mensaje de recibido (sin backend)
-    const form = document.getElementById('contactForm');
-    const ok = document.getElementById('ok');
-    form.addEventListener('submit', (e) => {
-      e.preventDefault();                 // no recargar
-      ok.style.display = 'block';         // mostrar confirmación
-      form.reset();                       // limpiar campos
-      ok.scrollIntoView({behavior:'smooth', block:'center'});
-    });
   </script>
 </body>
 </html>
