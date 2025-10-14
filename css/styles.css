@@ -405,6 +405,17 @@ body {
     align-items: center;
     position: relative;
   }
+  .certificados {
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    width: 100%;
+  }
+
+  .certificados img {
+    width: 150px;  /* un poco más pequeñas en móvil */
+    height: auto;
+  }
 
   /* Enlaces del menú */
   .nav-menu {
