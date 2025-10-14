@@ -10,10 +10,28 @@
     <div id="header"></div>
     
     <main class="main-content">
+        <section class="hero">
+             <img src="../img/Pagina galeria.png" alt="Imagen principal index">
+        </section>
     <div class="hero-text">
-    <h2>Galería</h2>
-    
+        <h2>Galería</h2>
     </div>
+    <div class="columnasgaleria">
+        <div class="galeria1">
+            <img src="../img/GI1.png" alt=" GI1">
+            <img src="../img/GI2.png" alt=" GI2">
+            <img src="../img/GI3.png" alt=" GI3">
+            <img src="../img/GI4.png" alt=" GI4">
+            <img src="../img/GI5.png" alt=" GI5">
+        </div>
+        <div class="galeria2">
+            <img src="../img/GD1.png" alt="GD1">
+            <img src="../img/GD2.png" alt="GD2">
+            <img src="../img/GD3.png" alt="GD3">
+            <img src="../img/GD4.png" alt="GD4">
+            <img src="../img/GD5.png" alt="GD5">
+        </div>
+    </div>    
     </main>
 
     <div id="footer"></div>
@@ -31,6 +49,18 @@
   const script = document.createElement('script');
   script.src = '../js/menus.js';
   document.body.appendChild(script);
+
+  // Añadir comportamiento del menú hamburguesa después de cargar el header
+      setTimeout(() => {
+        const toggle = document.querySelector('.menu-toggle');
+        const nav = document.querySelector('.nav-links');
+        if (toggle && nav) {
+          toggle.addEventListener('click', () => {
+            nav.classList.toggle('active');
+            toggle.classList.toggle('open');
+          });
+        }
+      }, 200);
 });
 
   // Cargar el footer
