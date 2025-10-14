@@ -177,3 +177,100 @@ body {
   align-items: center;
   gap: 8px;
 }
+/* ===== HERO COVER ===== */
+.hero.hero--cover {
+  position: relative;
+  width: 100%;
+  margin: 15px auto;
+  overflow: hidden;
+  border-radius: 6px;
+  box-shadow: 0 4px 12px rgba(0,0,0,.15);
+}
+
+.hero.hero--cover > img {
+  width: 100%;
+  height: clamp(220px, 48vw, 420px);
+  object-fit: cover;
+  display: block;
+}
+
+.hero__overlay {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center start;
+  padding: clamp(12px, 4vw, 28px);
+  background: linear-gradient(90deg, rgba(0,0,0,.45) 0%, rgba(0,0,0,0) 60%);
+}
+
+.hero__overlay h1 {
+  max-width: 980px;
+  color: #fff;
+  line-height: 1.25;
+  font-weight: 700;
+  font-size: clamp(1.1rem, 2.4vw + .6rem, 2rem);
+  text-shadow: 0 2px 10px rgba(0,0,0,.35);
+  margin: 0;
+}
+
+/* ===== SECCIÓN: NUESTROS PROCESOS ===== */
+.section {
+  width: min(1200px, 94%);
+  margin-inline: auto;
+}
+
+.section__title {
+  margin: 28px auto 18px;
+  width: max-content;
+  font-size: clamp(1.1rem, .9rem + 1.1vw, 1.6rem);
+  color: #1a8b59;                     /* verde corporativo */
+  font-weight: 700;
+  border-bottom: 4px solid #1a8b59;   /* subrayado tipo maqueta */
+  padding: 0 .35rem .2rem;
+  border-radius: 2px;
+}
+
+.procesos__card {
+  border: 2px dotted rgba(0,0,0,.25); /* borde punteado como la referencia */
+  background: #fff;
+  padding: clamp(16px, 2.2vw, 26px);
+  border-radius: 6px;
+  line-height: 1.8;
+  color: #444;
+}
+
+.procesos__card p + p { margin-top: 1rem; }
+
+/* ===== FRANJA DE CONTACTO ===== */
+.contact-strip {
+  margin-top: 28px;
+  background: #1a8b59; /* verde */
+  color: #fff;
+  padding: clamp(14px, 2vw, 18px);
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
+  border-radius: 6px;
+}
+
+.contact-strip__item {
+  display: grid;
+  grid-template-columns: 22px 1fr;
+  align-items: center;
+  gap: 10px;
+  font-size: .95rem;
+}
+
+.contact-strip .icon {
+  width: 22px;
+  height: 22px;
+  fill: #fff;
+}
+
+/* Responsive: 3 columnas en pantallas medianas+ */
+@media (min-width: 820px) {
+  .contact-strip {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+}
