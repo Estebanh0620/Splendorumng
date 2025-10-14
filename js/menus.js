@@ -24,3 +24,23 @@ document.addEventListener("click", (e) => {
   }
 });
 
+// --- Menú Hamburguesa (Responsive) ---
+const mobileMenu = document.getElementById("mobile-menu");
+const navMenu = document.querySelector(".nav-menu");
+
+if (mobileMenu && navMenu) {
+  mobileMenu.addEventListener("click", (e) => {
+    e.stopPropagation();
+    navMenu.classList.toggle("active");
+    mobileMenu.classList.toggle("open");
+  });
+
+  // Cierra el menú si haces clic fuera (en móviles)
+  document.addEventListener("click", (e) => {
+    if (!e.target.closest(".nav-menu") && !e.target.closest("#mobile-menu")) {
+      navMenu.classList.remove("active");
+      mobileMenu.classList.remove("open");
+    }
+  });
+}
+

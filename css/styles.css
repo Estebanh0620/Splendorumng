@@ -367,156 +367,93 @@ body {
   fill: #fff;
 }
 
-/* ===================================================
-   ===== RESPONSIVE (TABLET & MÓVIL) =====
-=================================================== */
-
-/* Tablets medianas */
-@media (max-width: 1024px) {
-  .hero-text {
-    padding: 0 25px;
-  }
-  .certificados {
-    gap: 30px;
-  }
-  .pq {
-    padding-left: 40px !important;
-  }
-}
-
-/* Tablets pequeñas y móviles grandes */
-@media (max-width: 850px) {
-  .columnasgaleria {
-    flex-direction: column;
-    gap: 40px;
-  }
-  .contenedorpq {
-    flex-direction: column;
-    text-align: center;
-    padding: 0 20px;
-  }
-  .contenedorpq img {
-    margin: 0 auto;
-  }
-  .pq {
-    padding: 0 !important;
-    text-align: center;
-  }
-}
-
-/* Móviles */
-@media (max-width: 600px) {
-  .main-header .container {
-    flex-direction: column;
-    gap: 10px;
-  }
-
-  .nav-menu {
-    flex-direction: column;
-    gap: 1rem;
-    text-align: center;
-  }
-
-  .hero-text h1 {
-    font-size: 1.8rem;
-  }
-
-  .hero-text p {
-    font-size: 0.95rem;
-  }
-
-  .certificados {
-    flex-direction: column;
-    gap: 20px;
-  }
-
-  .footer-content {
-    text-align: center;
-  }
-
-  .footer-content p {
-    justify-content: center;
-  }
-
-  .hero__overlay h1 {
-    font-size: 1.5rem;
-    padding: 0 10px;
-  }
-}
-
-/* ============================================
-   ===== MENÚ HAMBURGUESA RESPONSIVE =====
-============================================ */
-
-.hamburger {
+/* RESPONSIVE */
+/* Icono del menú (hamburguesa) */
+#mobile-menu {
   display: none;
-  flex-direction: column;
-  justify-content: center;
+  font-size: 2rem;
+  color: #007a33;
   cursor: pointer;
-  width: 35px;
-  height: 25px;
-  gap: 6px;
-  position: relative;
-  z-index: 1100;
+  background: none;
+  border: none;
+  position: absolute;
+  right: 25px;   /* Más a la derecha */
+  z-index: 1100; /* Más alto para estar sobre todo */
 }
 
-.hamburger span {
-  display: block;
-  height: 3px;
-  width: 100%;
-  background: #007a33;
-  border-radius: 3px;
-  transition: all 0.3s ease;
-}
-
-/* Estado activo (animación cruz) */
-.hamburger.active span:nth-child(1) {
-  transform: rotate(45deg) translateY(8px);
-}
-
-.hamburger.active span:nth-child(2) {
-  opacity: 0;
-}
-
-.hamburger.active span:nth-child(3) {
-  transform: rotate(-45deg) translateY(-8px);
-}
-
-/* Menú oculto y animación */
+/* ======== Vista móvil ======== */
 @media (max-width: 768px) {
-  .nav-menu {
-    display: none;
-    flex-direction: column;
-    gap: 1.5rem;
-    position: absolute;
-    top: 100%;
-    right: 0;
-    background: #fff;
+
+  /* Mostrar hamburguesa */
+  #mobile-menu {
+    display: block;
+  }
+
+  /* Ajustar header para mantener jerarquía correcta */
+  .main-header {
+    position: fixed;
+    top: 0;
+    left: 0;
     width: 100%;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    text-align: center;
-    padding: 1.5rem 0;
-    z-index: 1000;
-    transition: all 0.3s ease;
+    z-index: 1500; /* alto pero menor que el menú */
   }
 
-  .nav-menu.show {
-    display: flex;
-    animation: slideDown 0.3s ease;
-  }
-
-  .hamburger {
-    display: flex;
-  }
-
+  /* Ajuste del contenedor del header */
   .main-header .container {
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+    position: relative;
+  }
+
+  /* Enlaces del menú */
+  .nav-menu {
+    display: none;
+    flex-direction: column;
+    gap: 1.2rem;
+    position: fixed;
+    top: 80px; /* justo debajo del header */
+    left: 0;
+    width: 100%;
+    background: #fff;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    text-align: center;
+    padding: 1.5rem 0;
+    z-index: 3000; /* ✅ más alto que todo */
+    transition: all 0.3s ease;
+  }
+
+  .nav-menu.active {
+    display: flex;
+    animation: slideDown 0.3s ease;
+  }
+
+  /* Tamaño del texto en móvil */
+  .nav-menu li a {
+    font-size: 0.85rem;
+    padding: 8px;
+  }
+
+  /* Evita que se superponga debajo de secciones */
+  main, section, footer {
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Icono hamburguesa adicional si lo usas con span */
+  .hamburger {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    cursor: pointer;
+    width: 35px;
+    height: 25px;
+    gap: 6px;
+    z-index: 2000;
   }
 }
 
-/* Animación del despliegue */
+/* ===== Animación ===== */
 @keyframes slideDown {
   from {
     opacity: 0;
