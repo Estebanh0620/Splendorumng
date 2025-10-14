@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Hortalizas frescas – Splendor Herbs</title>
+  <link rel="stylesheet" href="../css/styles.css"/>
+
+  <!-- Estilos interacción-->
+  <style>
+  
+    .hero__overlay.centered{
+      display:flex; align-items:center; justify-content:center; text-align:center;
+      background: rgba(0,0,0,.35);
+    }
+    .hero__overlay.centered h1{ margin:0; max-width:900px; }
+
+    /* Grilla de tarjetas */
+    .catalogo{ width:min(1200px,94%); margin:28px auto 40px; }
+    .tiles{ display:grid; grid-template-columns:repeat(4,minmax(160px,1fr)); gap:18px; }
+    .tile{ position:relative; aspect-ratio:4/3; border-radius:6px; overflow:hidden; cursor:pointer;
+           box-shadow:0 4px 10px rgba(0,0,0,.12); transition:transform .2s, box-shadow .2s; }
+    .tile:hover{ transform:translateY(-2px); box-shadow:0 8px 18px rgba(0,0,0,.18); }
+    .tile img{ width:100%; height:100%; object-fit:cover; display:block; }
+    .tile__label{
+      position:absolute; left:8px; right:8px; bottom:8px;
+      padding:6px 10px; border-radius:4px; background:rgba(0,0,0,.45);
+      color:#fff; font-weight:600; text-align:center; text-shadow:0 1px 4px rgba(0,0,0,.35);
+    }
+
+    /* resultados */
+    .results{ width:min(1200px,94%); margin:10px auto 80px; display:grid; gap:24px; }
+    .empty{ text-align:center; color:#666; padding:16px 0; }
+
+    /* Ficha */
+    .card{ position:relative; display:grid; grid-template-columns:1.2fr 1fr; gap:16px;
+           background:#fff; border-radius:8px; overflow:hidden;
+           border:1px solid #e6e6e6; box-shadow:0 6px 16px rgba(0,0,0,.12);
+           animation:pop .2s ease-out; }
+    .card__img{ width:100%; height:100%; object-fit:cover; display:block; }
+    .card__body{ padding:16px 18px; }
+    .card__title{ color:#1a8b59; font-weight:700; margin:0 0 10px; font-size:1.2rem; display:flex; align-items:center; gap:8px; }
+    .badge{ height:8px; width:8px; border-radius:999px; background:#1a8b59; display:inline-block; }
+    .meta{ margin-top:8px; font-size:.94rem; color:#444; line-height:1.65; }
+    .meta b{ color:#1a8b59; }
+
+    /* Botón “X” */
+    .card__close{
+      position:absolute; top:10px; right:10px; width:32px; height:32px; line-height:30px;
+      text-align:center; border-radius:6px; border:1px solid #1a8b59; background:#fff;
+      color:#1a8b59; font-weight:800; cursor:pointer; user-select:none;
+    }
+    .card__close:hover{ background:#1a8b59; color:#fff; }
+
+    @keyframes pop{ from{ transform:scale(.985); opacity:.8 } to{ transform:scale(1); opacity:1 } }
+
+    @media (max-width: 920px){
+      .tiles{ grid-template-columns:repeat(2,1fr); }
+      .card{ grid-template-columns:1fr; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header dinámico -->
+  <div id="header"></div>
+
+  <main class="main-content">
+    <!-- HERO -->
+    <section class="hero hero--cover">
+      <img src="../img/hortalizasfrescas.jpg" alt="Hortalizas frescas"/>
+      <div class="hero__overlay centered">
+        <h1 style="font-size: 3.5rem; font-weight: 800; color: #fff; text-shadow: 0 3px 6px rgba(0,0,0,.4);">
+            Hortalizas frescas </h1>
+      </div>
+    </section>
+
+    <!-- Cuatro tarjetas -->
+    <section class="catalogo">
+      <div class="tiles" id="tiles">
+        <div class="tile" data-key="Lechuga" aria-label="Lechuga">
+          <img src="../img/Lechuga.jpg" alt="Lechuga"/>
+          <div class="tile__label">Lechuga</div>
+        </div>
+        <div class="tile" data-key="Cebollin" aria-label="Cebollín">
+          <img src="../img/Cebollin.jpg" alt="Cebollín"/>
+          <div class="tile__label">Cebollín</div>
+        </div>
+        <div class="tile" data-key="Cilantro" aria-label="Cilantro">
+          <img src="../img/Cilantro.jpg" alt="Cilantro"/>
+          <div class="tile__label">Cilantro</div>
+        </div>
+        <div class="tile" data-key="Perejil" aria-label="Perejil">
+          <img src="../img/Perejil.jpg" alt="Perejil"/>
+          <div class="tile__label">Perejil</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Fichas -->
+    <section class="results" id="results">
+      <p class="empty">Haz clic en una hortaliza para ver su ficha.</p>
+    </section>
+
+  <!-- Footer dinámico -->
+  <div id="footer"></div>
+
+  <!-- JS: cargar header/footer e interacción -->
+  <script>
+    // Cargar header/footer como en tus otras páginas
+    async function loadHTML(id, file, cb){
+      const res = await fetch(file);
+      document.getElementById(id).innerHTML = await res.text();
+      if(cb) cb();
+    }
+    loadHTML('header', 'header.html', () => {
+      const s=document.createElement('script'); s.src='../js/menus.js'; document.body.appendChild(s);
+    });
+    loadHTML('footer', 'footer.html');
+
+    // Datos de ejemplo para la ficha (ajústalos a tu contenido real)
+    const DATA = {
+      Lechuga: {
+        variedad:"Crespa",
+        origen:"Cundinamarca, Colombia",
+        empaque:"12 / 18 / 20 unidades por caja",
+        temp:"32°F - 36°F (0°C – 2°C)",
+        descripcion:"Hortaliza de hojas verdes y crujientes, baja en calorías y base esencial de ensaladas frescas."
+      },
+      Cebollin: {
+        variedad:"Verdeo",
+        origen:"Cundinamarca, Colombia",
+        empaque:"10 a 12 rollos por caja",
+        temp:"32°F - 41°F (0°C – 5°C)",
+        descripcion:"De sabor suave a cebolla, se utiliza para sopas, ensaladas y como guarnición en diversos platos."
+      },
+      Cilantro: {
+        variedad:"Común",
+        origen:"Tolima / Santander, Colombia",
+        empaque:"14 a 16 lb por caja",
+        temp:"32°F - 41°F (0°C – 5°C)",
+        descripcion:"Hierba de sabor fuerte y fresco, usada en salsas, sopas y cocina tradicional latinoamericana."
+      },
+      Perejil: {
+        variedad:"Liso",
+        origen:"Valle del Cauca / Antioquia, Colombia",
+        empaque:"14 a 16 lb por caja",
+        temp:"32°F - 41°F (0°C – 5°C)",
+        descripcion:"Planta de hojas verdes, muy nutritiva, empleada como condimento, en guarniciones y jugos verdes."
+      }
+    };
+
+    const tiles   = document.getElementById('tiles');
+    const results = document.getElementById('results');
+
+    function showEmpty(){
+      results.innerHTML = '<p class="empty">Haz clic en una hortaliza para ver su ficha.</p>';
+    }
+
+    function createCard(key){
+      const info = DATA[key];
+      const imgJpg = `../img/${key}.jpg`;
+      const imgPng = `../img/${key}.png`;
+
+      const card = document.createElement('article');
+      card.className = 'card';
+      card.setAttribute('data-key', key);
+      card.innerHTML = `
+        <button class="card__close" aria-label="Cerrar ${key}">✕</button>
+        <img class="card__img" src="${imgJpg}" onerror="this.onerror=null;this.src='${imgPng}'" alt="${key}">
+        <div class="card__body">
+          <h3 class="card__title"><span class="badge"></span> ${key}</h3>
+          <p class="meta">${info.descripcion}</p>
+          <p class="meta"><b>Variedad:</b> ${info.variedad}</p>
+          <p class="meta"><b>Origen:</b> ${info.origen}</p>
+          <p class="meta"><b>Empaque:</b> ${info.empaque}</p>
+          <p class="meta"><b>Temperatura de almacenamiento:</b> ${info.temp}</p>
+        </div>
+      `;
+      return card;
+    }
+
+    // Abrir ficha 
+    tiles.addEventListener('click', (e)=>{
+      const tile = e.target.closest('.tile');
+      if(!tile) return;
+      const key = tile.dataset.key;
+
+      results.innerHTML = '';                 // asegura una sola abierta
+      const card = createCard(key);
+      results.appendChild(card);
+      card.scrollIntoView({behavior:'smooth', block:'center'});
+    });
+
+    // Cerrar con la X
+    results.addEventListener('click', (e)=>{
+      if(e.target.matches('.card__close')) showEmpty();
+    });
+
+    // Cerrar al hacer clic fuera de la ficha
+    document.addEventListener('click', (e)=>{
+      const card = results.querySelector('.card');
+      if(!card) return;
+      const clickedInsideCard = e.composedPath().includes(card);
+      const clickedTile = e.target.closest('.tile');
+      if(!clickedInsideCard && !clickedTile) showEmpty();
+    });
+
+    // Estado
+    showEmpty();
+  </script>
+</body>
+</html>
