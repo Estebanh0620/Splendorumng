@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>¿Por qué Santana?</title>
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+    <div id="header"></div>
+    
+    <main class="main-content"></main>
+    <div class="hero-text">
+    <h2>¿Por qué elegirnos como tu aliado en aromáticas frescas?</h2>
+    <div class="contenedorpq">
+    <img src="../img/iconos-01.png" alt="Frescura garantizada">
+    <p class="pq">Cosechamos, seleccionamos y empacamos nuestras hierbas en tiempos 
+        óptimos para que conserven su aroma, sabor y calidad hasta llegar a su destino.</p>
+    </div>
+    <div class="contenedorpq">
+    <p class="pq">Cumplimos con los más altos estándares internacionales, respaldados 
+        por nuestras certificaciones Primus GFS 3.2 e ICA.</p>
+    <img src="../img/iconos-02.png" alt="calidad certificada">
+    </div>
+    <div class="contenedorpq">
+    <img src="../img/iconos-03.png" alt="sostenibilidad">
+    <p class="pq">Reducimos nuestra huella de carbono y aplicamos prácticas responsables 
+        que protegen el medio ambiente y garantizan un futuro más verde.</p>
+    </div>
+    <div class="contenedorpq">
+    <p class="pq">Con más de 7 años en el mercado de exportación, ofrecemos procesos 
+        transparentes, trazabilidad y un equipo comprometido.</p>
+    <img src="../img/iconos-04.png" alt="experiencia y confianza">
+    </div>
+    <div class="contenedorpq">
+    <img src="../img/iconos-05.png" alt="servicio">
+    <p class="pq">Atendemos a cada cliente de forma personalizada, ajustándonos a sus 
+        necesidades y construyendo relaciones de largo plazo.</p>
+    </div>
+    </div>
+
+    <div id="footer"></div>
+    <script>
+  // Función para cargar HTML externo
+  async function loadHTML(id, file, callback) {
+    const res = await fetch(file);
+    const text = await res.text();
+    document.getElementById(id).innerHTML = text;
+    if (callback) callback(); // Ejecuta algo después de cargar
+  }
+
+  // Cargar el header y luego inicializar el menú
+  loadHTML('header', 'header.html', () => {
+  const script = document.createElement('script');
+  script.src = '../js/menus.js';
+  document.body.appendChild(script);
+});
+
+  // Cargar el footer
+  loadHTML('footer', 'footer.html');
+</script>
+</body>
+</html>
