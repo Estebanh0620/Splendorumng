@@ -48,6 +48,18 @@
   const script = document.createElement('script');
   script.src = '../js/menus.js';
   document.body.appendChild(script);
+
+  // Añadir comportamiento del menú hamburguesa después de cargar el header
+      setTimeout(() => {
+        const toggle = document.querySelector('.menu-toggle');
+        const nav = document.querySelector('.nav-links');
+        if (toggle && nav) {
+          toggle.addEventListener('click', () => {
+            nav.classList.toggle('active');
+            toggle.classList.toggle('open');
+          });
+        }
+      }, 200);
 });
 
   // Cargar el footer

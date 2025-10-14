@@ -367,25 +367,163 @@ body {
   fill: #fff;
 }
 
-/* Responsive: 3 columnas en pantallas medianas+ */
-@media (min-width: 820px) {
-  .contact-strip {
-    grid-template-columns: repeat(3, 1fr);
-    gap: 16px;
+/* ===================================================
+   ===== RESPONSIVE (TABLET & MÓVIL) =====
+=================================================== */
+
+/* Tablets medianas */
+@media (max-width: 1024px) {
+  .hero-text {
+    padding: 0 25px;
+  }
+  .certificados {
+    gap: 30px;
+  }
+  .pq {
+    padding-left: 40px !important;
   }
 }
 
-.procesos__card {
-  border: none;           /* 🔸 sin borde */
-  background: transparent; /* 🔸 sin fondo blanco */
-  padding: 0;
-  margin-top: 24px;
-  color: #444;
-  line-height: 1.8;
+/* Tablets pequeñas y móviles grandes */
+@media (max-width: 850px) {
+  .columnasgaleria {
+    flex-direction: column;
+    gap: 40px;
+  }
+  .contenedorpq {
+    flex-direction: column;
+    text-align: center;
+    padding: 0 20px;
+  }
+  .contenedorpq img {
+    margin: 0 auto;
+  }
+  .pq {
+    padding: 0 !important;
+    text-align: center;
+  }
 }
 
+/* Móviles */
+@media (max-width: 600px) {
+  .main-header .container {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .nav-menu {
+    flex-direction: column;
+    gap: 1rem;
+    text-align: center;
+  }
+
+  .hero-text h1 {
+    font-size: 1.8rem;
+  }
+
+  .hero-text p {
+    font-size: 0.95rem;
+  }
+
+  .certificados {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .footer-content {
+    text-align: center;
+  }
+
+  .footer-content p {
+    justify-content: center;
+  }
+
+  .hero__overlay h1 {
+    font-size: 1.5rem;
+    padding: 0 10px;
+  }
+}
+
+/* ============================================
+   ===== MENÚ HAMBURGUESA RESPONSIVE =====
+============================================ */
+
+.hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  cursor: pointer;
+  width: 35px;
+  height: 25px;
+  gap: 6px;
+  position: relative;
+  z-index: 1100;
+}
+
+.hamburger span {
+  display: block;
+  height: 3px;
+  width: 100%;
+  background: #007a33;
+  border-radius: 3px;
+  transition: all 0.3s ease;
+}
+
+/* Estado activo (animación cruz) */
+.hamburger.active span:nth-child(1) {
+  transform: rotate(45deg) translateY(8px);
+}
+
+.hamburger.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger.active span:nth-child(3) {
+  transform: rotate(-45deg) translateY(-8px);
+}
+
+/* Menú oculto y animación */
 @media (max-width: 768px) {
-  .hero__overlay.centered h1 {
-    font-size: 2.4rem;
+  .nav-menu {
+    display: none;
+    flex-direction: column;
+    gap: 1.5rem;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background: #fff;
+    width: 100%;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    text-align: center;
+    padding: 1.5rem 0;
+    z-index: 1000;
+    transition: all 0.3s ease;
+  }
+
+  .nav-menu.show {
+    display: flex;
+    animation: slideDown 0.3s ease;
+  }
+
+  .hamburger {
+    display: flex;
+  }
+
+  .main-header .container {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
+
+/* Animación del despliegue */
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
