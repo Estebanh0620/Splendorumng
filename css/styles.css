@@ -274,3 +274,12 @@ body {
     gap: 16px;
   }
 }
+
+.procesos__card {
+  border: none;           /* 🔸 sin borde */
+  background: transparent; /* 🔸 sin fondo blanco */
+  padding: 0;
+  margin-top: 24px;
+  color: #444;
+  line-height: 1.8;
+}
