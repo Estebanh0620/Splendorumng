@@ -108,7 +108,15 @@ body {
   object-fit: contain;
   margin-right: 10px;
 }
-
+.hero-text b{
+  font-size: 1rem;
+}
+.iconoytexto{
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+}
 /*Galeria*/
 
 /*HEADER*/
