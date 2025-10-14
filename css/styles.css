@@ -117,24 +117,7 @@ body {
   flex-direction: column;
   text-align: center;
 }
-/*Galeria*/
-.columnasgaleria {
-  margin: 40px;
-  justify-content: center;
-  align-items: center;
-  flex-direction: row;
-}
-.galeria1{
-  margin: 30px;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  }
-.galeria1 img{
-  width: 98%;
-  margin: 15px auto; /* margen arriba y abajo */
-  overflow: hidden;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+
 }
 /*HEADER*/
 .main-header {
