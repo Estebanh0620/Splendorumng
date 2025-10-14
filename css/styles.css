@@ -119,6 +119,42 @@ body {
 }
 /*Galeria*/
 
+/*Página valores*/
+.valores {
+  background-color: #ffffff;
+  padding: 60px 20px;
+  text-align: center;
+  font-family: "Poppins", sans-serif;
+}
+
+.valores .intro {
+  max-width: 800px;
+  margin: 0 auto 40px;
+  color: #444;
+  line-height: 1.6;
+  text-align: justify;
+}
+
+.iconos-valores {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 30px;
+  justify-items: center;
+  margin-bottom: 40px;
+}
+
+.valor {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.valor img {
+  width: 60px;
+  height: 60px;
+  margin-bottom: 10px;
+}
+
 /*HEADER*/
 .main-header {
   background-color: #fff;
