@@ -30,7 +30,7 @@ Sitio web estático para la empresa **Splendor Herbs**. Incluye páginas públic
 │   ├── header.html
 │   ├── footer.html
 │   ├── hortalizas.html
-│   ├── hierbas .html         ← ¡OJO: contiene un espacio en el nombre!
+│   ├── hierbas .html
 │   ├── galeria.html
 │   ├── contacto.html
 │   ├── gracias.html
