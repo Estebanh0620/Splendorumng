@@ -98,5 +98,7 @@ Se puede hacer uso, modificacion y distribucion del mismo citando los autores.
 
 ## 👤 Autores
 **Andres Vasquez** —est.andresm.vasquez@unimilitar.edu.co.
+
 **Lizeth Castillo** -est.lizethj.castillo@unimilitar.edu.co.
+
 **Esteban Hurtado** —est.estebanm.hurtado@unimilitar.edu.co.
