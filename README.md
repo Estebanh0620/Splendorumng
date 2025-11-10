@@ -91,7 +91,7 @@ python -m http.server 5500
 ---
 
 ## 📄 Licencia
-**Este preyecto posee lo la licencia MIT.**
+**Este proyecto posee la licencia MIT.**
 Se puede hacer uso, modificacion y distribucion del mismo citando los autores.  
 
 ---
