@@ -1,5 +1,3 @@
-// REGISTRO DE USUARIOS
-
 function signup() {
   const name = document.getElementById("name").value.trim();
   const email = document.getElementById("email").value.trim();
@@ -18,16 +16,19 @@ function signup() {
       return firebase.firestore().collection("usuarios").doc(user.uid).set({
         name: name,
         email: email,
-        role: "admin", // o "editor"
+        role: "admin", // o lo que quieras
         createdAt: new Date()
       });
     })
     .then(() => {
       alert("Usuario registrado correctamente");
-      window.location.href = "index.html"; // volver al login
+
+      // Redirección al login
+      window.location.href = "index.html";
     })
     .catch((error) => {
-      console.error(error);
-      alert("Error: " + error.message);
-    });
+  console.error("Firebase ERROR CODE:", error.code);
+  console.error("Firebase ERROR MESSAGE:", error.message);
+  alert("Error: " + error.message);
+});
 }
