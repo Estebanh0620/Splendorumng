@@ -13,7 +13,7 @@ body {
 /* Caja del login */
 .login-container {
     width: 320px;
-    background: rgba(255, 255, 255, 0.85);
+    background: rgba(255, 255, 255, 0.5);
     padding: 30px;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0,0,0,0.2);
@@ -45,21 +45,4 @@ button {
 
 button:hover {
     background: #256b25;
-}
-
-.main-content {
-  margin-top: 110px; /* ajusta según el tamaño del header */
-}
-.hero {
-  position: relative;
-  width: 98%;
-  margin: 15px auto; /* margen arriba y abajo */
-  overflow: hidden;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-}
-
-.hero img {
-  width: 100%;
-  height: auto; /* mantiene proporciones */
-  display: block; /* elimina espacios blancos abajo */
 }
