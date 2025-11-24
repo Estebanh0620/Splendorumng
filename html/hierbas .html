@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Hortalizas frescas – Splendor Herbs</title>
-  <link rel="stylesheet" href="../css/styles.css"/>
+  <title>Hierbas aromáticas – Splendor Herbs</title>
+  <link rel="stylesheet" href="/Splendorumng/css/styles.css"/>
 
   <style>
     :root{
@@ -197,18 +197,18 @@
   <main class="main-content">
     <!-- HERO -->
     <section class="hero hero--cover">
-      <img src="/Splendorumng/img/hortalizasfrescas.jpg" alt="Hortalizas frescas"/>
+      <img src="/Splendorumng/img/Hierbas aromáticas.jpg" alt="Hierbas aromáticas"/>
       <div class="hero__overlay centered">
-        <h1>Hortalizas frescas</h1>
+        <h1>Hierbas aromáticas</h1>
       </div>
     </section>
 
     <!-- Catálogo de tiles -->
     <section class="catalogo">
       <div class="catalogo__intro">
-        <h2>Selecciona una hortaliza para ver su ficha técnica</h2>
+        <h2>Selecciona una hierba para ver su ficha técnica</h2>
         <p>
-          Haz clic sobre cualquiera de las hortalizas frescas para ver su ficha con variedad,
+          Haz clic sobre cualquiera de las hierbas aromáticas para ver su ficha con variedad,
           origen, empaque y recomendaciones de almacenamiento.
         </p>
       </div>
@@ -220,14 +220,14 @@
 
     <!-- Ficha seleccionada -->
     <section class="results" id="results">
-      <p class="empty">Haz clic en una hortaliza para ver su ficha.</p>
+      <p class="empty">Haz clic en una hierba aromática para ver su ficha.</p>
     </section>
   </main>
 
   <!-- Footer dinámico -->
   <div id="footer"></div>
 
-  <!-- Cargar header/footer + menú -->
+  <!-- Cargar header/footer y menú -->
   <script>
     async function loadHTML(id, file, callback){
       const res = await fetch(file);
@@ -245,43 +245,97 @@
     loadHTML('footer', 'footer.html');
   </script>
 
-  <!-- Interacción fichas + conexión con admin -->
+  <!-- Interacción + conexión con admin -->
   <script>
     const FICHAS_DEFAULT = [
       {
-        categoria: "Hortalizas frescas",
-        nombre: "Lechuga",
-        descripcion: "Hortaliza de hojas verdes y crujientes, baja en calorías y base esencial de ensaladas frescas.",
-        variedad: "Crespa",
-        origen: "Cundinamarca, Colombia",
-        empaque: "12 / 18 / 20 unidades por caja",
-        temperatura: "32°F - 36°F (0°C – 2°C)"
-      },
-      {
-        categoria: "Hortalizas frescas",
-        nombre: "Cebollin",
-        descripcion: "De sabor suave a cebolla, se utiliza para sopas, ensaladas y como guarnición en diversos platos.",
-        variedad: "Verdeo",
-        origen: "Cundinamarca, Colombia",
-        empaque: "10 a 12 rollos por caja",
-        temperatura: "32°F - 41°F (0°C – 5°C)"
-      },
-      {
-        categoria: "Hortalizas frescas",
-        nombre: "Cilantro",
-        descripcion: "Hierba de sabor fuerte y fresco, usada en salsas, sopas y cocina tradicional latinoamericana.",
+        categoria: "Hierbas aromáticas",
+        nombre: "Menta",
+        descripcion: "Planta refrescante, de tallos verdes y hojas dentadas, empleada en bebidas, postres y medicina natural.",
         variedad: "Común",
-        origen: "Tolima / Santander, Colombia",
-        empaque: "14 a 16 lb por caja",
+        origen: "Cundinamarca, Colombia",
+        empaque: "14 a 15 libras por tabaco",
         temperatura: "32°F - 41°F (0°C – 5°C)"
       },
       {
-        categoria: "Hortalizas frescas",
-        nombre: "Perejil",
-        descripcion: "Planta de hojas verdes, muy nutritiva, empleada como condimento, en guarniciones y jugos verdes.",
-        variedad: "Liso",
-        origen: "Valle del Cauca / Antioquia, Colombia",
-        empaque: "14 a 16 lb por caja",
+        categoria: "Hierbas aromáticas",
+        nombre: "Romero",
+        descripcion: "Planta perenne de hojas finas y verde oscuro, de aroma intenso y ligeramente amargo. Muy usada en carnes, guisos y panes.",
+        variedad: "Común",
+        origen: "Cundinamarca, Colombia",
+        empaque: "14 a 15 libras por tabaco",
+        temperatura: "41°F - 50°F (5°C – 10°C)"
+      },
+      {
+        categoria: "Hierbas aromáticas",
+        nombre: "Orégano",
+        descripcion: "Hierba mediterránea de sabor fuerte y ligeramente picante, rica en aceites esenciales con efectos digestivos.",
+        variedad: "Mediterráneo",
+        origen: "Boyacá, Colombia",
+        empaque: "14 a 15 libras por tabaco",
+        temperatura: "41°F - 50°F (5°C – 10°C)"
+      },
+      {
+        categoria: "Hierbas aromáticas",
+        nombre: "Mejorana",
+        descripcion: "Planta de aroma dulce y suave, pariente del orégano, empleada en guisos, sopas y en la industria alimentaria.",
+        variedad: "Dulce",
+        origen: "Tolima, Colombia",
+        empaque: "14 a 15 libras por tabaco",
+        temperatura: "41°F - 50°F (5°C – 10°C)"
+      },
+      {
+        categoria: "Hierbas aromáticas",
+        nombre: "Estragón",
+        descripcion: "Hierba de sabor anisado y fresco, muy valorada en la cocina gourmet y en la preparación de vinagres aromáticos.",
+        variedad: "Francés",
+        origen: "Antioquia, Colombia",
+        empaque: "14 a 15 libras por tabaco",
+        temperatura: "41°F - 50°F (5°C – 10°C)"
+      },
+      {
+        categoria: "Hierbas aromáticas",
+        nombre: "Laurel",
+        descripcion: "Arbusto de hojas coriáceas, empleadas secas para aromatizar guisos, sopas y marinados.",
+        variedad: "Común",
+        origen: "Nariño, Colombia",
+        empaque: "14 a 15 libras por tabaco",
+        temperatura: "41°F - 50°F (5°C – 10°C)"
+      },
+      {
+        categoria: "Hierbas aromáticas",
+        nombre: "Eneldo",
+        descripcion: "Hierba de tallos finos y hojas filamentosas de sabor anisado, muy usada en encurtidos y platos con pescado.",
+        variedad: "Fino",
+        origen: "Tolima, Colombia",
+        empaque: "14 a 15 libras por tabaco",
+        temperatura: "32°F - 41°F (0°C – 5°C)"
+      },
+      {
+        categoria: "Hierbas aromáticas",
+        nombre: "Tomillo",
+        descripcion: "Planta pequeña de sabor intenso y terroso, conocida por su resistencia y propiedades antimicrobianas.",
+        variedad: "Común",
+        origen: "Cundinamarca, Colombia",
+        empaque: "14 a 15 libras por tabaco",
+        temperatura: "41°F - 50°F (5°C – 10°C)"
+      },
+      {
+        categoria: "Hierbas aromáticas",
+        nombre: "Albahaca",
+        descripcion: "Hierba de hojas verdes brillantes y aroma fresco, indispensable en la cocina italiana y base del pesto.",
+        variedad: "Genovesa",
+        origen: "Tolima, Colombia",
+        empaque: "14 a 15 libras por tabaco",
+        temperatura: "50°F - 55°F (10°C – 12,8°C)"
+      },
+      {
+        categoria: "Hierbas aromáticas",
+        nombre: "Hierbabuena",
+        descripcion: "Variedad de menta de sabor más suave y dulce, usada en infusiones, repostería y coctelería.",
+        variedad: "Común",
+        origen: "Boyacá, Colombia",
+        empaque: "14 a 15 libras por tabaco",
         temperatura: "32°F - 41°F (0°C – 5°C)"
       }
     ];
@@ -292,46 +346,60 @@
         try {
           return JSON.parse(guardadas);
         } catch (e) {
-          console.error("Error leyendo fichasProductos, usando default hortalizas.", e);
+          console.error("Error leyendo fichasProductos, usando default hierbas.", e);
         }
       }
       return FICHAS_DEFAULT;
     }
 
-    const fichas = cargarFichas().filter(f => f.categoria === "Hortalizas frescas");
+    const fichas = cargarFichas().filter(f => f.categoria === "Hierbas aromáticas");
 
     const tiles   = document.getElementById('tiles');
     const results = document.getElementById('results');
 
     function showEmpty(){
-      results.innerHTML = '<p class="empty">Haz clic en una hortaliza para ver su ficha.</p>';
+      results.innerHTML = '<p class="empty">Haz clic en una hierba aromática para ver su ficha.</p>';
     }
-    
+
     function crearTile(ficha) {
       const tile = document.createElement('div');
       tile.className = 'tile';
       tile.dataset.nombre = ficha.nombre;
-      
-      const baseLocal = '/Splendorumng/img/' + ficha.nombre;
-      const srcMain = ficha.imagenUrl || baseLocal + '.jpg';
-      const onErrorAttr = ficha.imagenUrl
-      ? ''  // si viene de Firebase, no hacemos fallback
-      : `onerror="this.onerror=null;this.src='${baseLocal}.png'"`;
-      
+
+      const base = '/Splendorumng/img/' + ficha.nombre;
+      const imgJpg = base + '.jpg';
+      const imgPng = base + '.png';
+
       tile.innerHTML = `
-      <img src="${srcMain}" ${onErrorAttr} alt="${ficha.nombre}">
-      <div class="tile__label">${ficha.nombre}</div>
+        <img src="${imgJpg}" onerror="this.onerror=null;this.src='${imgPng}'" alt="${ficha.nombre}">
+        <div class="tile__label">${ficha.nombre}</div>
       `;
       return tile;
-}
+    }
+    function crearTile(ficha) {
+  const tile = document.createElement('div');
+  tile.className = 'tile';
+  tile.dataset.nombre = ficha.nombre;
 
+  const baseLocal = '/Splendorumng/img/' + ficha.nombre;
+  const srcMain = ficha.imagenUrl || baseLocal + '.jpg';
+  const onErrorAttr = ficha.imagenUrl
+    ? ''  // si viene de Firebase no hacemos fallback
+    : `onerror="this.onerror=null;this.src='${baseLocal}.png'"`;
+
+  tile.innerHTML = `
+    <img src="${srcMain}" ${onErrorAttr} alt="${ficha.nombre}">
+    <div class="tile__label">${ficha.nombre}</div>
+  `;
+  return tile;
+}
 function createCard(ficha){
   const baseLocal = '/Splendorumng/img/' + ficha.nombre;
   const srcMain = ficha.imagenUrl || baseLocal + '.jpg';
   const onErrorAttr = ficha.imagenUrl
-  ? ''
-  : `onerror="this.onerror=null;this.src='${baseLocal}.png'"`;
-  
+    ? ''
+    : `onerror="this.onerror=null;this.src='${baseLocal}.png'"`;
+
   const card = document.createElement('article');
   card.className = 'card';
   card.innerHTML = `
@@ -345,19 +413,20 @@ function createCard(ficha){
       <p class="meta"><b>Empaque:</b> ${ficha.empaque}</p>
       <p class="meta"><b>Temperatura de almacenamiento:</b> ${ficha.temperatura}</p>
     </div>
-    `;
-    return card;
+  `;
+  return card;
 }
+
 
 
     // Pintar tiles
     if (fichas.length === 0) {
-      tiles.innerHTML = '<p class="empty">No hay hortalizas configuradas en el panel de administración.</p>';
+      tiles.innerHTML = '<p class="empty">No hay hierbas configuradas en el panel de administración.</p>';
     } else {
       fichas.forEach(f => tiles.appendChild(crearTile(f)));
     }
 
-    // Clic en tile → muestra ficha
+    // Clic en tile → ficha
     tiles.addEventListener('click',(e)=>{
       const tile = e.target.closest('.tile');
       if(!tile) return;

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel dashboard</title>
+    <link rel="stylesheet" href="css/dashboard.css">
+</head>
+
+<body>
+
+    <div class="login-container">
+        <h1 class="titulo">Panel de Administrador</h1>
+        <h2 id="welcome" class="subtitulo">Cargando usuario...</h2>
+        <h3 class="subtitulo">¿Qué deseas editar?</h3>
+
+
+
+
+        <div class="botones">
+            <a href="galeria.html" class="btn">Editar galería</a>
+            <a href="productos.html" class="btn">Editar productos</a>
+        </div>
+
+        <button class="logout-btn" onclick="logout()">Cerrar sesión</button>
+    </div>
+    
+    <!-- Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-storage.js"></script>
+
+    <script src="js/firebase.js"></script>
+    <script src="js/dashboard.js"></script>
+
+</body>
+</html>
+

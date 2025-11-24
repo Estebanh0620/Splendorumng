@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nuestros valores – Splendor Herbs</title>
+  <link rel="stylesheet" href="/Splendorumng/css/styles.css">
+</head>
+<body>
+  <div id="header"></div>
+
+  <main class = "main-content">
+    <section class="valores">
+  <div class="contenedor-valores">
+    <div class="hero-text">
+    <h2>Los valores que manejamos en <span>SPLENDOR HERBS</span></h2>
+
+    <p>
+      En Splendor Herbs SAS creemos que los valores son la base que guía cada una de nuestras decisiones, procesos y relaciones.
+      Son el pilar que nos conecta con nuestros colaboradores y clientes, asegurando que cada producto, desde su cultivo hasta la entrega final,
+      refleje nuestro compromiso con la calidad, la confianza y la sostenibilidad.
+    </p>
+
+    <div class="iconos-valores">
+      <div class="valor">
+        <img src="/Splendorumng/img/iconos-02.png" alt="Calidad">
+        <p>Calidad</p>
+      </div>
+      <div class="valor">
+        <img src="/Splendorumng/img/iconos-06.png" alt="Honestidad">
+        <p>Honestidad</p>
+      </div>
+      <div class="valor">
+        <img src="/Splendorumng/img/iconos-07.png" alt="Adaptabilidad">
+        <p>Adaptabilidad</p>
+      </div>
+      <div class="valor">
+        <img src="/Splendorumng/img/iconos-08.png" alt="Confianza">
+        <p>Confianza</p>
+      </div>
+      <div class="valor">
+        <img src="/Splendorumng/img/iconos-10.png" alt="Servicio al cliente">
+        <p>Servicio al cliente</p>
+      </div>
+      </div>
+      <div class="iconos-valores">
+      <div class="valor">
+        <img src="/Splendorumng/img/iconos-11.png" alt="Competitividad">
+        <p>Competitividad</p>
+      </div>
+      <div class="valor">
+        <img src="/Splendorumng/img/iconos-13.png" alt="Perseverancia">
+        <p>Perseverancia</p>
+      </div>
+      <div class="valor">
+        <img src="/Splendorumng/img/iconos-14.png" alt="Responsabilidad">
+        <p>Responsabilidad</p>
+      </div>
+      <div class="valor">
+        <img src="/Splendorumng/img/iconos-09.png" alt="Trabajo en equipo">
+        <p>Trabajo en equipo</p>
+        </div>
+      </div>
+
+     <p>
+      Estos valores aseguran trazabilidad en la producción, cumplimiento con altos estándares y fortalecen la confianza con nuestros clientes internacionales.
+     </p>
+     </div>
+     </div>
+    </section>
+
+
+    
+  </div>
+  </main>
+
+  <div id="footer"></div>
+<script>
+  // Función para cargar HTML externo
+  async function loadHTML(id, file, callback) {
+    const res = await fetch(file);
+    const text = await res.text();
+    document.getElementById(id).innerHTML = text;
+    if (callback) callback(); // Ejecuta algo después de cargar
+  }
+
+  // Cargar el header y luego inicializar el menú
+  loadHTML('header', 'header.html', () => {
+  const script = document.createElement('script');
+  script.src = '../js/menus.js';
+  document.body.appendChild(script);
+
+  // Añadir comportamiento del menú hamburguesa después de cargar el header
+      setTimeout(() => {
+        const toggle = document.querySelector('.menu-toggle');
+        const nav = document.querySelector('.nav-links');
+        if (toggle && nav) {
+          toggle.addEventListener('click', () => {
+            nav.classList.toggle('active');
+            toggle.classList.toggle('open');
+          });
+        }
+      }, 200);
+});
+
+  // Cargar el footer
+  loadHTML('footer', 'footer.html');
+</script>
+</body>
+</html>
