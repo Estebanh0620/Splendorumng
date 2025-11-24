@@ -1,132 +1,103 @@
-const db = firebase.firestore();
-const storage = firebase.storage();
-const auth = firebase.auth();
+// js/admin_galeria.js
 
-// Comprueba autenticación (solo admins pueden usar esta página)
-auth.onAuthStateChanged(user => {
-  if (!user) {
-    window.location.href = "index.html"; // redirige al login si no está autenticado
-  }
-});
+const fileInput = document.getElementById('fileInput');
+const statusDiv = document.getElementById('status');
+const col1 = document.getElementById('col1');
+const col2 = document.getElementById('col2');
 
-// Referencias DOM
-const fileInput = document.getElementById("fileInput");
-const col1 = document.getElementById("col1");
-const col2 = document.getElementById("col2");
-
-// Helper: columna con menor altura (para balancear)
-function getShorterColumnForAdmin() {
-  return (col1.offsetHeight <= col2.offsetHeight) ? col1 : col2;
+function mostrarEstado(texto, esError = false) {
+  statusDiv.textContent = texto;
+  statusDiv.style.color = esError ? 'red' : '#333';
 }
 
-// Mostrar una imagen en el admin con botón borrar
-function mostrarImagenAdmin(docId, url) {
-  const col = getShorterColumnForAdmin();
-
-  const caja = document.createElement("div");
-  caja.className = "imagenCaja";
-
-  const img = document.createElement("img");
-  img.src = url;
-  img.alt = "Imagen galería";
-
-  const btn = document.createElement("div");
-  btn.className = "borrar";
-  btn.title = "Eliminar imagen";
-  btn.innerText = "🗑";
-
-  btn.addEventListener("click", () => {
-    if (!confirm("¿Eliminar esta imagen?")) return;
-    eliminarImagen(docId, url, caja);
-  });
-
-  caja.appendChild(img);
-  caja.appendChild(btn);
-  col.appendChild(caja);
-}
-
-// Cargar imágenes desde Firestore y mostrarlas
-async function cargarImagenesAdmin() {
-  col1.innerHTML = "";
-  col2.innerHTML = "";
-
-  const snap = await db.collection("galeria").orderBy("fecha", "desc").get();
-  snap.forEach(doc => {
-    const data = doc.data();
-    mostrarImagenAdmin(doc.id, data.url);
-  });
-}
-
-// Subir imagen seleccionada
-fileInput.addEventListener("change", async (e) => {
-  const archivo = e.target.files[0];
-  if (!archivo) return;
+// Cuando el admin selecciona un archivo
+fileInput.addEventListener('change', async (e) => {
+  const file = e.target.files[0];
+  if (!file) return;
 
   try {
-    // Ruta en la carpeta "galeria" del bucket
-    const fileName = `galeria/${Date.now()}_${archivo.name}`;
-    const ref = storage.ref().child(fileName);
+    mostrarEstado('Subiendo imagen...');
 
-    const uploadTask = ref.put(archivo);
+    // Carpeta "galeria" en Firebase Storage
+    const nombreArchivo = `${Date.now()}_${file.name}`;
+    const storagePath = `galeria/${nombreArchivo}`;
+    const storageRef = storage.ref(storagePath);
 
-    // Muestra progreso
-    const progresoModal = document.createElement("div");
-    progresoModal.style = `
-      position:fixed;
-      left:50%;
-      top:20px;
-      transform:translateX(-50%);
-      background:#fff;
-      padding:8px;
-      border-radius:8px;
-      box-shadow:0 4px 12px rgba(0,0,0,.2);
-      z-index:9999
-    `;
-    progresoModal.innerText = "Subiendo imagen... 0%";
-    document.body.appendChild(progresoModal);
+    // 1. Subir a Storage
+    await storageRef.put(file);
 
-    uploadTask.on('state_changed', snapshot => {
-      const pct = Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100);
-      progresoModal.innerText = `Subiendo imagen... ${pct}%`;
-    });
+    // 2. Obtener URL pública
+    const url = await storageRef.getDownloadURL();
 
-    // Esperar a que termine
-    await uploadTask;
-    const url = await ref.getDownloadURL();
-
-    // Guardar en Firestore
-    const docRef = await db.collection("galeria").add({
+    // 3. Guardar en Firestore (colección "galeria")
+    await db.collection('galeria').add({
       url: url,
-      fecha: firebase.firestore.FieldValue.serverTimestamp()
+      storagePath: storagePath,
+      createdAt: firebase.firestore.FieldValue.serverTimestamp()
     });
 
-    // Mostrar en UI
-    mostrarImagenAdmin(docRef.id, url);
-
-    // limpiar input y modal
-    fileInput.value = "";
-    progresoModal.remove();
-
+    mostrarEstado('Imagen subida correctamente ✅');
+    fileInput.value = ''; // limpiar input
   } catch (error) {
-    alert("Error al subir: " + error.message);
     console.error(error);
+    mostrarEstado('Error al subir la imagen: ' + error.message, true);
   }
 });
 
-// Eliminar imagen y doc
-async function eliminarImagen(docId, url, elementoDOM) {
+// Escuchar en tiempo real las imágenes de la colección "galeria"
+db.collection('galeria')
+  .orderBy('createdAt', 'desc')
+  .onSnapshot((snapshot) => {
+    col1.innerHTML = '';
+    col2.innerHTML = '';
+    let index = 0;
+
+    snapshot.forEach((doc) => {
+      const data = doc.data();
+      if (!data.url) return;
+
+      const card = document.createElement('div');
+      card.className = 'item-galeria-admin';
+
+      const img = document.createElement('img');
+      img.src = data.url;
+      img.alt = 'Imagen galería';
+
+      const btnEliminar = document.createElement('button');
+      btnEliminar.textContent = 'Eliminar';
+      btnEliminar.className = 'btnEliminar';
+      btnEliminar.addEventListener('click', () => {
+        eliminarImagen(doc.id, data.storagePath);
+      });
+
+      card.appendChild(img);
+      card.appendChild(btnEliminar);
+
+      if (index % 2 === 0) {
+        col1.appendChild(card);
+      } else {
+        col2.appendChild(card);
+      }
+      index++;
+    });
+  });
+
+async function eliminarImagen(docId, storagePath) {
+  const confirmar = confirm('¿Eliminar esta imagen de la galería?');
+  if (!confirmar) return;
+
   try {
-    await db.collection("galeria").doc(docId).delete();
+    // 1. Borrar documento de Firestore
+    await db.collection('galeria').doc(docId).delete();
 
-    const ref = storage.refFromURL(url);
-    await ref.delete();
+    // 2. Borrar archivo de Storage
+    if (storagePath) {
+      await storage.ref(storagePath).delete();
+    }
 
-    if (elementoDOM && elementoDOM.remove) elementoDOM.remove();
+    mostrarEstado('Imagen eliminada 🗑️');
   } catch (error) {
-    alert("Error al eliminar: " + error.message);
     console.error(error);
+    mostrarEstado('Error al eliminar: ' + error.message, true);
   }
 }
-
-// Inicializar
-cargarImagenesAdmin();
