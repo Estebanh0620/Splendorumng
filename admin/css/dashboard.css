@@ -89,3 +89,36 @@ input {
 .logout-btn:hover {
     background: #9a0000;
 }
+
+.cookie-banner {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #ffffff;
+  padding: 15px 20px;
+  border-radius: 12px;
+  display: flex;
+  gap: 15px;
+  align-items: center;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.25);
+  z-index: 9999;
+  max-width: 90%;
+}
+
+.btnCookie {
+  background: #3b82f6;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 10px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.btnCookie:hover {
+  background: #2563eb;
+  transform: translateY(-2px);
+}
+
