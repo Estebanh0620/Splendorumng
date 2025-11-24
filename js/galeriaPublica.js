@@ -1,36 +1,27 @@
-const dbPublic = firebase.firestore();
+const db = firebase.firestore();
 
-const colPublic1 = document.getElementById("columna1");
-const colPublic2 = document.getElementById("columna2");
+// balanceo de columnas (se llena la menos alta)
+function getShorterColumn() {
+    const col1 = document.getElementById("columna1");
+    const col2 = document.getElementById("columna2");
 
-function getShorterColumnPublic() {
-  return (colPublic1.offsetHeight <= colPublic2.offsetHeight) ? colPublic1 : colPublic2;
+    return col1.offsetHeight <= col2.offsetHeight ? col1 : col2;
 }
 
-function mostrarImagenPublic(url) {
-  const col = getShorterColumnPublic();
-  const img = document.createElement("img");
-  img.src = url;
-  img.alt = "Galería";
-  img.loading = "lazy";
-  img.style.width = "100%";
-  img.style.display = "block";
-  col.appendChild(img);
-}
+async function cargarGaleria() {
+    const snap = await db.collection("galeria")
+        .orderBy("fecha", "desc") // últimas primero
+        .get();
 
-// Escuchar cambios en tiempo real (recomendado)
-dbPublic.collection("galeria").orderBy("fecha", "desc")
-  .onSnapshot(snapshot => {
-    // vaciar columnas y volver a renderizar (sencillo y consistente)
-    colPublic1.innerHTML = "";
-    colPublic2.innerHTML = "";
+    snap.forEach(doc => {
+        const data = doc.data();
+        const img = document.createElement("img");
+        img.src = data.url;
+        img.alt = "imagen galeria";
 
-    snapshot.forEach(doc => {
-      const data = doc.data();
-      if (data && data.url) {
-        mostrarImagenPublic(data.url);
-      }
+        const colDestino = getShorterColumn();
+        colDestino.appendChild(img);
     });
-  }, err => {
-    console.error("Error cargando galería pública:", err);
-  });
+}
+
+cargarGaleria();
