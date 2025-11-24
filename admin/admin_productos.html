@@ -5,179 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Administrar productos – Splendor Herbs</title>
 
-  <style>
-    body {
-      background-color: #f5f7f2;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      margin: 0;
-      padding: 0;
-    }
-    .admin-wrapper {
-      max-width: 1100px;
-      margin: 40px auto;
-      padding: 20px;
-      background: #ffffff;
-      border-radius: 16px;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.08);
-    }
-    .admin-title {
-      text-align: center;
-      margin-bottom: 24px;
-    }
-    .admin-title h1 {
-      font-size: 2rem;
-      margin-bottom: 8px;
-      color: #35552a;
-    }
-    .admin-title p {
-      color: #555;
-      font-size: 0.95rem;
-    }
-    .hint {
-      font-size: 0.8rem;
-      color: #777;
-      margin-top: 4px;
-    }
-
-    .form-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      margin-bottom: 12px;
-    }
-    .form-group {
-      flex: 1;
-      min-width: 210px;
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
-    }
-    .form-group textarea {
-      resize: vertical;
-      min-height: 60px;
-      max-height: 150px;
-    }
-    .form-row label {
-      font-weight: 600;
-      font-size: 0.95rem;
-    }
-    .form-input, .form-select, .form-textarea {
-      padding: 8px 10px;
-      border-radius: 8px;
-      border: 1px solid #c5d2c0;
-      font-size: 0.95rem;
-    }
-
-    .btn-primary-green {
-      background: linear-gradient(135deg, #5da243, #3c7a2a);
-      border: none;
-      color: #fff;
-      padding: 10px 16px;
-      border-radius: 999px;
-      font-weight: 600;
-      cursor: pointer;
-      transition: transform 0.1s ease, box-shadow 0.1s ease, opacity 0.15s;
-    }
-    .btn-primary-green[disabled] {
-      opacity: 0.6;
-      cursor: default;
-      box-shadow: none;
-    }
-    .btn-primary-green:hover:not([disabled]) {
-      opacity: 0.95;
-      box-shadow: 0 6px 16px rgba(61, 122, 42, 0.25);
-      transform: translateY(-1px);
-    }
-
-    .btn-danger-outline {
-      border-radius: 999px;
-      border: 1px solid #c0392b;
-      padding: 4px 10px;
-      font-size: 0.8rem;
-      background: transparent;
-      color: #c0392b;
-      cursor: pointer;
-    }
-    .btn-danger-outline:hover {
-      background: #c0392b;
-      color: #fff;
-    }
-
-    .tablas-productos {
-      margin-top: 24px;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 20px;
-    }
-    .card-categoria {
-      border-radius: 14px;
-      padding: 16px 18px;
-      background: #f9fbf7;
-      border: 1px solid #dfebd7;
-    }
-    .card-categoria h2 {
-      font-size: 1.1rem;
-      margin-bottom: 4px;
-      color: #32502b;
-    }
-    .card-categoria p {
-      font-size: 0.82rem;
-      color: #777;
-      margin-bottom: 10px;
-    }
-    .lista-productos {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-    }
-    .lista-productos li {
-      display: flex;
-      align-items: flex-start;
-      justify-content: space-between;
-      padding: 6px 0;
-      border-bottom: 1px dashed #dbe4d5;
-      font-size: 0.9rem;
-      gap: 8px;
-    }
-    .lista-productos li:last-child {
-      border-bottom: none;
-    }
-    .prod-main {
-      font-weight: 600;
-      color: #35552a;
-    }
-    .prod-sub {
-      font-size: 0.78rem;
-      color: #777;
-    }
-    .badge-categoria {
-      display: inline-block;
-      padding: 2px 8px;
-      border-radius: 999px;
-      font-size: 0.7rem;
-      font-weight: 600;
-      background: #e7f2e0;
-      color: #32502b;
-      margin-left: 4px;
-    }
-    .actions {
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
-    }
-
-    #estadoSubida {
-      min-height: 18px;
-    }
-
-    @media (max-width: 600px) {
-      .admin-wrapper {
-        margin: 20px 10px;
-      }
-    }
-  </style>
+  <!-- Enlace al CSS externo -->
+  <link rel="stylesheet" href="css/admin_productos.css">
 </head>
 <body>
+  <a id="btnVolver" href="dashboard.html">
+    <span class="flecha">←</span>
+  </a>
+
 
   <div class="admin-wrapper">
     <div class="admin-title">
@@ -187,7 +22,7 @@
         <strong>Hortalizas frescas</strong> y <strong>Hierbas aromáticas</strong>.
       </p>
       <p class="hint">
-        Las páginas <em>hortalizas.html</em> y <em>hierbas .html</em> leen estos datos desde <code>localStorage.fichasProductos</code>.
+        Las páginas <em>hortalizas.html</em> y <em>hierbas.html</em> leen estos datos desde <code>localStorage.fichasProductos</code>.
       </p>
     </div>
 
@@ -196,13 +31,7 @@
       <div class="form-row">
         <div class="form-group">
           <label for="nombreProducto">Nombre del producto</label>
-          <input
-            type="text"
-            id="nombreProducto"
-            class="form-input"
-            placeholder="Ej: Lechuga Romana"
-            required
-          />
+          <input type="text" id="nombreProducto" class="form-input" placeholder="Ej: Lechuga Romana" required />
         </div>
         <div class="form-group" style="max-width: 240px;">
           <label for="categoriaProducto">Categoría</label>
@@ -216,8 +45,7 @@
       <div class="form-row">
         <div class="form-group">
           <label for="descripcionProducto">Descripción</label>
-          <textarea id="descripcionProducto" class="form-textarea form-input"
-            placeholder="Breve descripción del producto..." required></textarea>
+          <textarea id="descripcionProducto" class="form-textarea form-input" placeholder="Breve descripción..." required></textarea>
         </div>
       </div>
 
@@ -247,9 +75,7 @@
         <div class="form-group" style="max-width: 280px;">
           <label for="imagenProducto">Imagen del producto</label>
           <input type="file" id="imagenProducto" class="form-input" accept="image/*" />
-          <p class="hint">
-            Se subirá a la carpeta <strong>productos/</strong> en Firebase Storage.
-          </p>
+          <p class="hint">Se subirá a la carpeta <strong>productos/</strong> en Firebase Storage.</p>
         </div>
 
         <div class="form-group" style="max-width: 220px; align-items: flex-end;">
@@ -271,7 +97,7 @@
 
       <article class="card-categoria">
         <h2>Hierbas aromáticas <span class="badge-categoria">Aromáticas</span></h2>
-        <p>Estos productos aparecerán en <strong>hierbas .html</strong>.</p>
+        <p>Estos productos aparecerán en <strong>hierbas.html</strong>.</p>
         <ul id="lista-aromaticas" class="lista-productos"></ul>
       </article>
     </div>
@@ -281,193 +107,8 @@
   <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-storage.js"></script>
 
-  <script>
-    // Configuración Firebase
-    var firebaseConfig = {
-      apiKey: "AIzaSyDg47slMZt3RvZULEJi0CnHmGWYfyDpa0A",
-      authDomain: "splendorherbs-admin.firebaseapp.com",
-      projectId: "splendorherbs-admin",
-      storageBucket: "splendorherbs-admin.firebasestorage.app",
-      messagingSenderId: "550979088160",
-      appId: "1:550979088160:web:fd0f9af671d06fe286b145"
-    };
+  <!-- Enlace al archivo JS externo -->
+  <script src="js/admin_productos.js"></script>
 
-    // Inicializar Firebase
-    firebase.initializeApp(firebaseConfig);
-  </script>
-
-  <script>
-    console.log("Admin productos cargado");
-
-    // ============== SEED POR DEFECTO ==============
-    const FICHAS_DEFAULT = [];
-
-    function cargarFichas() {
-      const guardadas = localStorage.getItem("fichasProductos");
-      if (guardadas) {
-        try {
-          return JSON.parse(guardadas);
-        } catch (e) {
-          console.error("Error leyendo fichas de localStorage, usando default.", e);
-        }
-      }
-      return FICHAS_DEFAULT;
-    }
-
-    let fichas = cargarFichas();
-
-    function guardarFichas() {
-      localStorage.setItem("fichasProductos", JSON.stringify(fichas));
-    }
-
-    function renderFichas() {
-      const listaH = document.getElementById("lista-hortalizas");
-      const listaA = document.getElementById("lista-aromaticas");
-      listaH.innerHTML = "";
-      listaA.innerHTML = "";
-
-      fichas
-        .filter(f => f.categoria === "Hortalizas frescas")
-        .forEach(f => {
-          const li = document.createElement("li");
-          li.innerHTML = `
-            <div>
-              <div class="prod-main">${f.nombre}</div>
-              <div class="prod-sub">Variedad: ${f.variedad}</div>
-            </div>
-            <div class="actions">
-              <button class="btn-danger-outline" onclick="eliminarFicha(${f.id})">Eliminar</button>
-            </div>
-          `;
-          listaH.appendChild(li);
-        });
-
-      fichas
-        .filter(f => f.categoria === "Hierbas aromáticas")
-        .forEach(f => {
-          const li = document.createElement("li");
-          li.innerHTML = `
-            <div>
-              <div class="prod-main">${f.nombre}</div>
-              <div class="prod-sub">Variedad: ${f.variedad}</div>
-            </div>
-            <div class="actions">
-              <button class="btn-danger-outline" onclick="eliminarFicha(${f.id})">Eliminar</button>
-            </div>
-          `;
-          listaA.appendChild(li);
-        });
-    }
-
-    function eliminarFicha(id) {
-      if (!confirm("¿Eliminar este producto y su ficha?")) return;
-      fichas = fichas.filter(f => f.id !== id);
-      guardarFichas();
-      renderFichas();
-    }
-
-    const formAgregar  = document.getElementById("formAgregar");
-    const btnGuardar   = document.getElementById("btnGuardar");
-    const estadoSubida = document.getElementById("estadoSubida");
-
-    function setEstado(texto) {
-      estadoSubida.textContent = texto || "";
-    }
-
-    function finalizarGuardado(ficha) {
-      fichas.push(ficha);
-      guardarFichas();
-      renderFichas();
-      formAgregar.reset();
-      document.getElementById("productoId").value = "";
-      setEstado("Producto guardado correctamente.");
-      btnGuardar.disabled = false;
-      btnGuardar.textContent = "Guardar producto";
-    }
-
-    formAgregar.addEventListener("submit", function(e) {
-      e.preventDefault();
-      console.log("Submit admin productos");
-
-      const nombre      = document.getElementById("nombreProducto").value.trim();
-      const categoria   = document.getElementById("categoriaProducto").value;
-      const descripcion = document.getElementById("descripcionProducto").value.trim();
-      const variedad    = document.getElementById("variedadProducto").value.trim();
-      const origen      = document.getElementById("origenProducto").value.trim();
-      const empaque     = document.getElementById("empaqueProducto").value.trim();
-      const temperatura = document.getElementById("temperaturaProducto").value.trim();
-      const fileInput   = document.getElementById("imagenProducto");
-      const file        = fileInput.files[0];
-
-      if (!nombre || !descripcion || !variedad || !origen || !empaque || !temperatura) {
-        alert("Por favor completa todos los campos de texto.");
-        return;
-      }
-
-      const nuevaFicha = {
-        id: Date.now(),
-        nombre,
-        categoria,
-        descripcion,
-        variedad,
-        origen,
-        empaque,
-        temperatura,
-        imagenUrl: ""
-      };
-
-      btnGuardar.disabled = true;
-      btnGuardar.textContent = "Guardando...";
-      setEstado("");
-
-      // Si no hay imagen, sólo guardamos ficha
-      if (!file) {
-        console.log("Guardando sin imagen");
-        finalizarGuardado(nuevaFicha);
-        return;
-      }
-
-      console.log("Subiendo imagen a Firebase Storage...");
-      try {
-        const storageRef = firebase.storage().ref();
-        const ruta = `productos/${Date.now()}_${file.name}`;
-        const uploadTask = storageRef.child(ruta).put(file);
-
-        uploadTask.on(
-          "state_changed",
-          function(snapshot) {
-            const pct = Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100);
-            setEstado(`Subiendo imagen... ${pct}%`);
-          },
-          function(error) {
-            console.error("Error al subir la imagen:", error);
-            alert("Error al subir la imagen: " + error.message);
-            setEstado("Error al subir imagen, se guardará la ficha sin imagen.");
-            finalizarGuardado(nuevaFicha);
-          },
-          function() {
-            uploadTask.snapshot.ref.getDownloadURL().then(function(downloadURL) {
-              console.log("Imagen subida. URL:", downloadURL);
-              nuevaFicha.imagenUrl = downloadURL;
-              setEstado("Imagen subida correctamente.");
-              finalizarGuardado(nuevaFicha);
-            }).catch(function(error) {
-              console.error("Error obteniendo URL de descarga:", error);
-              alert("Error al obtener la URL de descarga: " + error.message);
-              setEstado("No se pudo obtener la URL, se guardará la ficha sin imagen.");
-              finalizarGuardado(nuevaFicha);
-            });
-          }
-        );
-      } catch (error) {
-        console.error("Error inesperado al subir imagen:", error);
-        alert("Error inesperado al subir imagen: " + error.message);
-        setEstado("Error inesperado al subir la imagen. Se guardará la ficha sin imagen.");
-        finalizarGuardado(nuevaFicha);
-      }
-    });
-
-    renderFichas();
-  </script>
 </body>
 </html>
