@@ -3,60 +3,190 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Hierbas aromaticas – Splendor Herbs</title>
+  <title>Hierbas aromáticas – Splendor Herbs</title>
   <link rel="stylesheet" href="/Splendorumng/css/styles.css"/>
 
-  <!-- Estilos interacción-->
   <style>
-  
+    :root{
+      --verde-oscuro:#305730;
+      --verde-medio:#4f8f3f;
+      --texto-secundario:#555;
+      --borde-suave:#dde7d6;
+    }
+
+    body{
+      font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+      background:radial-gradient(circle at top left,#e7f3de,#f6f9f2 50%,#ffffff 100%);
+      color:#222;
+    }
+
     .hero__overlay.centered{
-      display:flex; align-items:center; justify-content:center; text-align:center;
-      background: rgba(0,0,0,.35);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+      background:rgba(0,0,0,.35);
     }
-    .hero__overlay.centered h1{ margin:0; max-width:900px; }
+    .hero__overlay.centered h1{
+      margin:0;
+      max-width:900px;
+      font-size:3.2rem;
+      font-weight:800;
+      color:#fff;
+      text-shadow:0 3px 6px rgba(0,0,0,.4);
+    }
 
-    /* Grilla de tarjetas */
-    .catalogo{ width:min(1200px,94%); margin:28px auto 40px; }
-    .tiles{ display:grid; grid-template-columns:repeat(4,minmax(160px,1fr)); gap:18px; }
-    .tile{ position:relative; aspect-ratio:4/3; border-radius:6px; overflow:hidden; cursor:pointer;
-           box-shadow:0 4px 10px rgba(0,0,0,.12); transition:transform .2s, box-shadow .2s; }
-    .tile:hover{ transform:translateY(-2px); box-shadow:0 8px 18px rgba(0,0,0,.18); }
-    .tile img{ width:100%; height:100%; object-fit:cover; display:block; }
+    .catalogo{
+      width:min(1200px,94%);
+      margin:26px auto 10px;
+    }
+    .catalogo__intro{
+      margin-bottom:16px;
+      color:var(--texto-secundario);
+      font-size:.95rem;
+    }
+    .catalogo__intro h2{
+      margin-bottom:6px;
+      color:var(--verde-oscuro);
+      font-size:1.3rem;
+    }
+
+    .tiles{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+      gap:14px;
+    }
+    .tile{
+      position:relative;
+      border-radius:16px;
+      overflow:hidden;
+      background:#fff;
+      cursor:pointer;
+      box-shadow:0 6px 15px rgba(0,0,0,.06);
+      border:1px solid rgba(217,232,207,0.9);
+      transition:transform .12s ease, box-shadow .12s ease;
+    }
+    .tile:hover{
+      transform:translateY(-3px);
+      box-shadow:0 10px 22px rgba(0,0,0,.09);
+    }
+    .tile img{
+      width:100%;
+      height:130px;
+      object-fit:cover;
+      display:block;
+    }
     .tile__label{
-      position:absolute; left:8px; right:8px; bottom:8px;
-      padding:6px 10px; border-radius:4px; background:rgba(0,0,0,.45);
-      color:#fff; font-weight:600; text-align:center; text-shadow:0 1px 4px rgba(0,0,0,.35);
+      padding:8px 10px 9px;
+      text-align:center;
+      font-weight:600;
+      font-size:.9rem;
+      color:var(--verde-oscuro);
+      background:linear-gradient(90deg,#f7fbf3,#e8f5dd);
     }
 
-    /* resultados */
-    .results{ width:min(1200px,94%); margin:10px auto 80px; display:grid; gap:24px; }
-    .empty{ text-align:center; color:#666; padding:16px 0; }
+    .results{
+      width:min(1200px,94%);
+      margin:18px auto 60px;
+      min-height:80px;
+    }
+    .empty{
+      text-align:center;
+      font-size:.9rem;
+      color:#777;
+      padding:14px 12px;
+      border-radius:12px;
+      background:rgba(255,255,255,.85);
+      border:1px dashed #d0e3c4;
+    }
 
-    /* Ficha */
-    .card{ position:relative; display:grid; grid-template-columns:1.2fr 1fr; gap:16px;
-           background:#fff; border-radius:8px; overflow:hidden;
-           border:1px solid #e6e6e6; box-shadow:0 6px 16px rgba(0,0,0,.12);
-           animation:pop .2s ease-out; }
-    .card__img{ width:100%; height:100%; object-fit:cover; display:block; }
-    .card__body{ padding:16px 18px; }
-    .card__title{ color:#1a8b59; font-weight:700; margin:0 0 10px; font-size:1.2rem; display:flex; align-items:center; gap:8px; }
-    .badge{ height:8px; width:8px; border-radius:999px; background:#1a8b59; display:inline-block; }
-    .meta{ margin-top:8px; font-size:.94rem; color:#444; line-height:1.65; }
-    .meta b{ color:#1a8b59; }
-
-    /* Botón “X” */
+    .card{
+      position:relative;
+      display:grid;
+      grid-template-columns:260px minmax(0,1fr);
+      gap:0;
+      border-radius:20px;
+      overflow:hidden;
+      background:linear-gradient(145deg,#ffffff,#f5f9f1);
+      border:1px solid var(--borde-suave);
+      box-shadow:0 14px 30px rgba(0,0,0,.08);
+      animation:pop .18s ease-out;
+    }
+    .card__img{
+      width:100%;
+      height:100%;
+      max-height:260px;
+      object-fit:cover;
+      display:block;
+    }
+    .card__body{
+      padding:16px 18px 18px;
+      display:flex;
+      flex-direction:column;
+      gap:4px;
+    }
+    .card__title{
+      color:var(--verde-oscuro);
+      font-weight:700;
+      margin:0 0 6px;
+      font-size:1.2rem;
+      display:flex;
+      align-items:center;
+      gap:8px;
+    }
+    .badge{
+      height:10px;
+      width:10px;
+      border-radius:999px;
+      background:linear-gradient(135deg,#4f8f3f,#8fd86f);
+      display:inline-block;
+    }
+    .meta{
+      margin-top:6px;
+      font-size:.94rem;
+      color:var(--texto-secundario);
+      line-height:1.6;
+    }
+    .meta b{
+      color:var(--verde-medio);
+    }
     .card__close{
-      position:absolute; top:10px; right:10px; width:32px; height:32px; line-height:30px;
-      text-align:center; border-radius:6px; border:1px solid #1a8b59; background:#fff;
-      color:#1a8b59; font-weight:800; cursor:pointer; user-select:none;
+      position:absolute;
+      top:10px;
+      right:10px;
+      width:32px;
+      height:32px;
+      line-height:30px;
+      text-align:center;
+      border-radius:999px;
+      border:1px solid var(--verde-medio);
+      background:#fff;
+      color:var(--verde-medio);
+      font-weight:800;
+      cursor:pointer;
+      user-select:none;
+      box-shadow:0 4px 10px rgba(0,0,0,.08);
     }
-    .card__close:hover{ background:#1a8b59; color:#fff; }
+    .card__close:hover{
+      background:var(--verde-medio);
+      color:#fff;
+    }
 
-    @keyframes pop{ from{ transform:scale(.985); opacity:.8 } to{ transform:scale(1); opacity:1 } }
+    @keyframes pop{
+      from{ transform:scale(.98); opacity:.8; }
+      to{ transform:scale(1); opacity:1; }
+    }
 
-    @media (max-width: 920px){
-      .tiles{ grid-template-columns:repeat(2,1fr); }
-      .card{ grid-template-columns:1fr; }
+    @media(max-width:920px){
+      .card{
+        grid-template-columns:1fr;
+      }
+      .card__img{
+        max-height:220px;
+      }
+      .hero__overlay.centered h1{
+        font-size:2.3rem;
+      }
     }
   </style>
 </head>
@@ -67,203 +197,256 @@
   <main class="main-content">
     <!-- HERO -->
     <section class="hero hero--cover">
-      <img src="/Splendorumng/img/Hierbas aromáticas.jpg" alt="Hierbas aromaticas "/>
+      <img src="/Splendorumng/img/Hierbas aromáticas.jpg" alt="Hierbas aromáticas"/>
       <div class="hero__overlay centered">
-        <h1 style="font-size: 3.5rem; font-weight: 800; color: #fff; text-shadow: 0 3px 6px rgba(0,0,0,.4);">
-            Hierbas aromaticas </h1>
+        <h1>Hierbas aromáticas</h1>
       </div>
     </section>
 
-    <!-- Cuatro tarjetas -->
+    <!-- Catálogo de tiles -->
     <section class="catalogo">
+      <div class="catalogo__intro">
+        <h2>Selecciona una hierba para ver su ficha técnica</h2>
+        <p>
+          Haz clic sobre cualquiera de las hierbas aromáticas para ver su ficha con variedad,
+          origen, empaque y recomendaciones de almacenamiento.
+        </p>
+      </div>
+
       <div class="tiles" id="tiles">
-        <div class="tile" data-key="Menta" aria-label="Menta">
-          <img src="/Splendorumng/img/Menta.png" alt="Menta"/>
-          <div class="tile__label">Menta</div>
-        </div>
-        <div class="tile" data-key="Romero" aria-label="Romero">
-          <img src="/Splendorumng/img/Romero.png" alt="Romero"/>
-          <div class="tile__label">Romero</div>
-        </div>
-        <div class="tile" data-key="Orégano" aria-label="Orégano">
-          <img src="/Splendorumng/img/oregano.png" alt="Orégano"/>
-          <div class="tile__label">Orégano</div>
-        </div>
-        <div class="tile" data-key="Mejorana" aria-label="Mejorana">
-          <img src="/Splendorumng/img/Mejorana.jpg" alt="Mejorana"/>
-          <div class="tile__label">Mejorana</div>
-        </div>
-        <div class="tile" data-key="Estragón" aria-label="Estragón">
-          <img src="/Splendorumng/img/Estragón.png" alt="Estragón"/>
-          <div class="tile__label">Estragón</div>
-        </div>
-        <div class="tile" data-key="Laurel" aria-label="Laurel">
-          <img src="/Splendorumng/img/Laurel.png" alt="Laurel"/>
-          <div class="tile__label">Laurel</div>
-        </div>
-        <div class="tile" data-key="Eneldo" aria-label="Eneldo">
-          <img src="/Splendorumng/img/Eneldo.jpg" alt="Eneldo"/>
-          <div class="tile__label">Eneldo</div>
-        </div>
-        <div class="tile" data-key="Tomillo" aria-label="Tomillo">
-          <img src="/Splendorumng/img/Tomillo.png" alt="Tomillo"/>
-          <div class="tile__label">Tomillo</div>
-        </div>
-        <div class="tile" data-key="Albahaca" aria-label="Albahaca">
-          <img src="/Splendorumng/img/Albahaca.png" alt="Albahaca"/>
-          <div class="tile__label">Albahaca</div>
-        </div>
-        <div class="tile" data-key="Hierbabuena" aria-label="Hierbabuena">
-          <img src="/Splendorumng/img/Hierbabuena.png" alt="Hierbabuena"/>
-          <div class="tile__label">Hierbabuena</div>
-        </div>
+        <!-- Tiles generados por JS -->
       </div>
     </section>
 
-    <!-- Fichas -->
+    <!-- Ficha seleccionada -->
     <section class="results" id="results">
-      <p class="empty">Haz clic en una hierba aromatica para ver su ficha.</p>
+      <p class="empty">Haz clic en una hierba aromática para ver su ficha.</p>
     </section>
+  </main>
 
   <!-- Footer dinámico -->
   <div id="footer"></div>
 
-  <!-- JS: cargar header/footer e interacción -->
+  <!-- Cargar header/footer y menú -->
   <script>
-    // Cargar header/footer como en tus otras páginas
-    async function loadHTML(id, file, cb){
+    async function loadHTML(id, file, callback){
       const res = await fetch(file);
-      document.getElementById(id).innerHTML = await res.text();
-      if(cb) cb();
+      const text = await res.text();
+      document.getElementById(id).innerHTML = text;
+      if (callback) callback();
     }
-    loadHTML('header', 'header.html', () => {
-      const s=document.createElement('script'); s.src='../js/menus.js'; document.body.appendChild(s);
-    });
-    loadHTML('footer', 'footer.html');
 
-    // Datos de ejemplo para la ficha (ajústalos a tu contenido real)
-    const DATA = {
-      Menta: {
-        variedad:"Común",
-        origen:"Cundinamarca, Colombia",
-        empaque:"14 a 15 libras por tabaco",
-        temp:"32°F - 41°F (0°C – 5°C)",
-        descripcion:"Planta refrescante, de tallos verdes y hojas dentadas, empleada en bebidas, postres y medicina natural."
+    loadHTML('header', 'header.html', () => {
+      const script = document.createElement('script');
+      script.src = '../js/menus.js';
+      document.body.appendChild(script);
+    });
+
+    loadHTML('footer', 'footer.html');
+  </script>
+
+  <!-- Interacción + conexión con admin -->
+  <script>
+    const FICHAS_DEFAULT = [
+      {
+        categoria: "Hierbas aromáticas",
+        nombre: "Menta",
+        descripcion: "Planta refrescante, de tallos verdes y hojas dentadas, empleada en bebidas, postres y medicina natural.",
+        variedad: "Común",
+        origen: "Cundinamarca, Colombia",
+        empaque: "14 a 15 libras por tabaco",
+        temperatura: "32°F - 41°F (0°C – 5°C)"
       },
-      Romero: {
-        variedad:"Común",
-        origen:"Cundinamarca, Colombia",
-        empaque:"14 a 15 libras por tabaco",
-        temp:"41°F - 50°F (5°C – 10°C)",
-        descripcion:"Planta perenne de hojas finas y verde oscuro, con aroma intenso y ligeramente amargo. Muy usada en carnes, guisos y panes."
+      {
+        categoria: "Hierbas aromáticas",
+        nombre: "Romero",
+        descripcion: "Planta perenne de hojas finas y verde oscuro, de aroma intenso y ligeramente amargo. Muy usada en carnes, guisos y panes.",
+        variedad: "Común",
+        origen: "Cundinamarca, Colombia",
+        empaque: "14 a 15 libras por tabaco",
+        temperatura: "41°F - 50°F (5°C – 10°C)"
       },
-      Orégano: {
-        variedad:"Mediterráneo",
-        origen:"Boyacá, Colombia",
-        empaque:"14 a 15 libras por tabaco",
-        temp:"41°F - 50°F (5°C – 10°C)",
-        descripcion:"Hierba mediterránea de sabor fuerte y ligeramente picante, rica en aceites esenciales con efectos digestivos."
+      {
+        categoria: "Hierbas aromáticas",
+        nombre: "Orégano",
+        descripcion: "Hierba mediterránea de sabor fuerte y ligeramente picante, rica en aceites esenciales con efectos digestivos.",
+        variedad: "Mediterráneo",
+        origen: "Boyacá, Colombia",
+        empaque: "14 a 15 libras por tabaco",
+        temperatura: "41°F - 50°F (5°C – 10°C)"
       },
-      Mejorana: {
-        variedad:"Dulce",
-        origen:"Tolima, Colombia",
-        empaque:"14 a 15 libras por tabaco",
-        temp:"41°F - 50°F (5°C – 10°C)",
-        descripcion:"Planta de aroma dulce y suave, pariente del orégano, empleada en guisos, sopas y en la industria alimentaria."
+      {
+        categoria: "Hierbas aromáticas",
+        nombre: "Mejorana",
+        descripcion: "Planta de aroma dulce y suave, pariente del orégano, empleada en guisos, sopas y en la industria alimentaria.",
+        variedad: "Dulce",
+        origen: "Tolima, Colombia",
+        empaque: "14 a 15 libras por tabaco",
+        temperatura: "41°F - 50°F (5°C – 10°C)"
       },
-      Albahaca: {
-        variedad:"Genovesa",
-        origen:"Tolima, Colombia",
-        empaque:"14 a 15 libras por tabaco",
-        temp:"50°F - 55°F (10°C – 12,8°C)",
-        descripcion:"Hierba de hojas verdes brillantes y aroma fresco, indispensable en la cocina italiana y base del pesto."
+      {
+        categoria: "Hierbas aromáticas",
+        nombre: "Estragón",
+        descripcion: "Hierba de sabor anisado y fresco, muy valorada en la cocina gourmet y en la preparación de vinagres aromáticos.",
+        variedad: "Francés",
+        origen: "Antioquia, Colombia",
+        empaque: "14 a 15 libras por tabaco",
+        temperatura: "41°F - 50°F (5°C – 10°C)"
       },
-      Estragón: {
-        variedad:"Francés",
-        origen:"Antioquia, Colombia",
-        empaque:"14 a 15 libras por tabaco",
-        temp:"41°F - 50°F (5°C – 10°C)",
-        descripcion:"Hierba de sabor anisado y fresco, muy valorada en la cocina gourmet y en la preparación de vinagres aromáticos."
+      {
+        categoria: "Hierbas aromáticas",
+        nombre: "Laurel",
+        descripcion: "Arbusto de hojas coriáceas, empleadas secas para aromatizar guisos, sopas y marinados.",
+        variedad: "Común",
+        origen: "Nariño, Colombia",
+        empaque: "14 a 15 libras por tabaco",
+        temperatura: "41°F - 50°F (5°C – 10°C)"
       },
-      Laurel: {
-        variedad:"Común",
-        origen:"Nariño, Colombia",
-        empaque:"14 a 15 libras por tabaco",
-        temp:"41°F - 50°F (5°C – 10°C)",
-        descripcion:"Arbusto de hojas coriáceas, empleadas secas para aromatizar guisos, sopas y marinados."
+      {
+        categoria: "Hierbas aromáticas",
+        nombre: "Eneldo",
+        descripcion: "Hierba de tallos finos y hojas filamentosas de sabor anisado, muy usada en encurtidos y platos con pescado.",
+        variedad: "Fino",
+        origen: "Tolima, Colombia",
+        empaque: "14 a 15 libras por tabaco",
+        temperatura: "32°F - 41°F (0°C – 5°C)"
       },
-      Eneldo: {
-        variedad:"Fino",
-        origen:"Tolima, Colombia",
-        empaque:"14 a 15 libras por tabaco",
-        temp:"32°F - 41°F (0°C – 5°C)",
-        descripcion:"Hierba de tallos finos y hojas filamentosas, de sabor anisado, muy usada en encurtidos y platos con pescado."
+      {
+        categoria: "Hierbas aromáticas",
+        nombre: "Tomillo",
+        descripcion: "Planta pequeña de sabor intenso y terroso, conocida por su resistencia y propiedades antimicrobianas.",
+        variedad: "Común",
+        origen: "Cundinamarca, Colombia",
+        empaque: "14 a 15 libras por tabaco",
+        temperatura: "41°F - 50°F (5°C – 10°C)"
       },
-      Tomillo: {
-        variedad:"Común",
-        origen:"Cundinamarca, Colombia",
-        empaque:"14 a 15 libras por tabaco",
-        temp:"41°F - 50°F (5°C – 10°C)",
-        descripcion:"Planta pequeña de sabor intenso y terroso, conocida por su resistencia y propiedades antimicrobianas."
+      {
+        categoria: "Hierbas aromáticas",
+        nombre: "Albahaca",
+        descripcion: "Hierba de hojas verdes brillantes y aroma fresco, indispensable en la cocina italiana y base del pesto.",
+        variedad: "Genovesa",
+        origen: "Tolima, Colombia",
+        empaque: "14 a 15 libras por tabaco",
+        temperatura: "50°F - 55°F (10°C – 12,8°C)"
       },
-      Hierbabuena: {
-        variedad:"Común",
-        origen:"Boyacá, Colombia",
-        empaque:"14 a 15 libras por tabaco",
-        temp:"32°F - 41°F (0°C – 5°C)",
-        descripcion:"Variedad de menta de sabor más suave y dulce, usada en infusiones, repostería y coctelería."
+      {
+        categoria: "Hierbas aromáticas",
+        nombre: "Hierbabuena",
+        descripcion: "Variedad de menta de sabor más suave y dulce, usada en infusiones, repostería y coctelería.",
+        variedad: "Común",
+        origen: "Boyacá, Colombia",
+        empaque: "14 a 15 libras por tabaco",
+        temperatura: "32°F - 41°F (0°C – 5°C)"
       }
-    };
+    ];
+
+    function cargarFichas() {
+      const guardadas = localStorage.getItem("fichasProductos");
+      if (guardadas) {
+        try {
+          return JSON.parse(guardadas);
+        } catch (e) {
+          console.error("Error leyendo fichasProductos, usando default hierbas.", e);
+        }
+      }
+      return FICHAS_DEFAULT;
+    }
+
+    const fichas = cargarFichas().filter(f => f.categoria === "Hierbas aromáticas");
 
     const tiles   = document.getElementById('tiles');
     const results = document.getElementById('results');
 
     function showEmpty(){
-      results.innerHTML = '<p class="empty">Haz clic en una hortaliza para ver su ficha.</p>';
+      results.innerHTML = '<p class="empty">Haz clic en una hierba aromática para ver su ficha.</p>';
     }
 
-    function createCard(key){
-      const info = DATA[key];
-      const imgJpg = `../img/${key}.jpg`;
-      const imgPng = `../img/${key}.png`;
+    function crearTile(ficha) {
+      const tile = document.createElement('div');
+      tile.className = 'tile';
+      tile.dataset.nombre = ficha.nombre;
 
-      const card = document.createElement('article');
-      card.className = 'card';
-      card.setAttribute('data-key', key);
-      card.innerHTML = `
-        <button class="card__close" aria-label="Cerrar ${key}">✕</button>
-        <img class="card__img" src="${imgJpg}" onerror="this.onerror=null;this.src='${imgPng}'" alt="${key}">
-        <div class="card__body">
-          <h3 class="card__title"><span class="badge"></span> ${key}</h3>
-          <p class="meta">${info.descripcion}</p>
-          <p class="meta"><b>Variedad:</b> ${info.variedad}</p>
-          <p class="meta"><b>Origen:</b> ${info.origen}</p>
-          <p class="meta"><b>Empaque:</b> ${info.empaque}</p>
-          <p class="meta"><b>Temperatura de almacenamiento:</b> ${info.temp}</p>
-        </div>
+      const base = '/Splendorumng/img/' + ficha.nombre;
+      const imgJpg = base + '.jpg';
+      const imgPng = base + '.png';
+
+      tile.innerHTML = `
+        <img src="${imgJpg}" onerror="this.onerror=null;this.src='${imgPng}'" alt="${ficha.nombre}">
+        <div class="tile__label">${ficha.nombre}</div>
       `;
-      return card;
+      return tile;
+    }
+    function crearTile(ficha) {
+  const tile = document.createElement('div');
+  tile.className = 'tile';
+  tile.dataset.nombre = ficha.nombre;
+
+  const baseLocal = '/Splendorumng/img/' + ficha.nombre;
+  const srcMain = ficha.imagenUrl || baseLocal + '.jpg';
+  const onErrorAttr = ficha.imagenUrl
+    ? ''  // si viene de Firebase no hacemos fallback
+    : `onerror="this.onerror=null;this.src='${baseLocal}.png'"`;
+
+  tile.innerHTML = `
+    <img src="${srcMain}" ${onErrorAttr} alt="${ficha.nombre}">
+    <div class="tile__label">${ficha.nombre}</div>
+  `;
+  return tile;
+}
+function createCard(ficha){
+  const baseLocal = '/Splendorumng/img/' + ficha.nombre;
+  const srcMain = ficha.imagenUrl || baseLocal + '.jpg';
+  const onErrorAttr = ficha.imagenUrl
+    ? ''
+    : `onerror="this.onerror=null;this.src='${baseLocal}.png'"`;
+
+  const card = document.createElement('article');
+  card.className = 'card';
+  card.innerHTML = `
+    <button class="card__close" aria-label="Cerrar ${ficha.nombre}">✕</button>
+    <img class="card__img" src="${srcMain}" ${onErrorAttr} alt="${ficha.nombre}">
+    <div class="card__body">
+      <h3 class="card__title"><span class="badge"></span> ${ficha.nombre}</h3>
+      <p class="meta">${ficha.descripcion}</p>
+      <p class="meta"><b>Variedad:</b> ${ficha.variedad}</p>
+      <p class="meta"><b>Origen:</b> ${ficha.origen}</p>
+      <p class="meta"><b>Empaque:</b> ${ficha.empaque}</p>
+      <p class="meta"><b>Temperatura de almacenamiento:</b> ${ficha.temperatura}</p>
+    </div>
+  `;
+  return card;
+}
+
+
+
+    // Pintar tiles
+    if (fichas.length === 0) {
+      tiles.innerHTML = '<p class="empty">No hay hierbas configuradas en el panel de administración.</p>';
+    } else {
+      fichas.forEach(f => tiles.appendChild(crearTile(f)));
     }
 
-    // Abrir ficha 
-    tiles.addEventListener('click', (e)=>{
+    // Clic en tile → ficha
+    tiles.addEventListener('click',(e)=>{
       const tile = e.target.closest('.tile');
       if(!tile) return;
-      const key = tile.dataset.key;
+      const nombre = tile.dataset.nombre;
+      const ficha = fichas.find(f => f.nombre === nombre);
+      if (!ficha) return;
 
-      results.innerHTML = '';                 // asegura una sola abierta
-      const card = createCard(key);
+      results.innerHTML = '';
+      const card = createCard(ficha);
       results.appendChild(card);
       card.scrollIntoView({behavior:'smooth', block:'center'});
     });
 
-    // Cerrar con la X
-    results.addEventListener('click', (e)=>{
+    // Cerrar ficha
+    results.addEventListener('click',(e)=>{
       if(e.target.matches('.card__close')) showEmpty();
     });
 
-    // Cerrar al hacer clic fuera de la ficha
-    document.addEventListener('click', (e)=>{
+    // Cerrar clic fuera
+    document.addEventListener('click',(e)=>{
       const card = results.querySelector('.card');
       if(!card) return;
       const clickedInsideCard = e.composedPath().includes(card);
@@ -271,39 +454,7 @@
       if(!clickedInsideCard && !clickedTile) showEmpty();
     });
 
-    // Estado
     showEmpty();
   </script>
-  <script>
-  // Función para cargar HTML externo
-  async function loadHTML(id, file, callback) {
-    const res = await fetch(file);
-    const text = await res.text();
-    document.getElementById(id).innerHTML = text;
-    if (callback) callback(); // Ejecuta algo después de cargar
-  }
-
-  // Cargar el header y luego inicializar el menú
-  loadHTML('header', 'header.html', () => {
-  const script = document.createElement('script');
-  script.src = '../js/menus.js';
-  document.body.appendChild(script);
-
-  // Añadir comportamiento del menú hamburguesa después de cargar el header
-      setTimeout(() => {
-        const toggle = document.querySelector('.menu-toggle');
-        const nav = document.querySelector('.nav-links');
-        if (toggle && nav) {
-          toggle.addEventListener('click', () => {
-            nav.classList.toggle('active');
-            toggle.classList.toggle('open');
-          });
-        }
-      }, 200);
-});
-
-  // Cargar el footer
-  loadHTML('footer', 'footer.html');
-</script>
 </body>
 </html>

@@ -11,7 +11,7 @@
 
 <h2 class="titulo">Editar galería</h2>
 
-<input type="file" id="fileInput" accept="image/*">
+<input type="file" id="fileInput" accept="image/*" hidden>
 <button class="btnSubir" onclick="document.getElementById('fileInput').click()">+ Subir imagen</button>
 
 <div class="columnasgaleria">
@@ -19,11 +19,9 @@
     <div class="galeria2" id="col2"></div>
 </div>
 
-<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
-<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
-<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-storage.js"></script>
-
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-storage.js"></script>
 
 <script src="js/firebase.js"></script>
 <script src="js/admin_galeria.js"></script>
