@@ -430,7 +430,7 @@
       console.log("Subiendo imagen a Firebase Storage...");
       try {
         const storageRef = firebase.storage().ref();
-        const ruta = `productos/${Date.now()}_${file.name}`;  // SIEMPRE en carpeta productos/
+        const ruta = `productos/${Date.now()}_${file.name}`;
         const uploadTask = storageRef.child(ruta).put(file);
 
         uploadTask.on(
