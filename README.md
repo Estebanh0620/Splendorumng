@@ -83,7 +83,7 @@ Sitio web estático para la empresa **Splendor Herbs**. Incluye páginas públic
 ### Opción B — link
 
 https://estebanh0620.github.io/Splendorumng/
-
+// Función para cargar HTML 
 
 
 ---
