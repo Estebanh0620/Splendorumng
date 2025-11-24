@@ -34,6 +34,7 @@ function mostrarImagenAdmin(docId, url) {
   btn.className = "borrar";
   btn.title = "Eliminar imagen";
   btn.innerText = "🗑";
+
   btn.addEventListener("click", () => {
     if (!confirm("¿Eliminar esta imagen?")) return;
     eliminarImagen(docId, url, caja);
@@ -60,16 +61,27 @@ async function cargarImagenesAdmin() {
 fileInput.addEventListener("change", async (e) => {
   const archivo = e.target.files[0];
   if (!archivo) return;
+
   try {
-    // mostrar estado de subida (opcional)
+    // Ruta en la carpeta "galeria" del bucket
     const fileName = `galeria/${Date.now()}_${archivo.name}`;
     const ref = storage.ref().child(fileName);
 
     const uploadTask = ref.put(archivo);
 
-    // Muestra progreso (opcional)
+    // Muestra progreso
     const progresoModal = document.createElement("div");
-    progresoModal.style = "position:fixed;left:50%;top:20px;transform:translateX(-50%);background:#fff;padding:8px;border-radius:8px;box-shadow:0 4px 12px rgba(0,0,0,.2);z-index:9999";
+    progresoModal.style = `
+      position:fixed;
+      left:50%;
+      top:20px;
+      transform:translateX(-50%);
+      background:#fff;
+      padding:8px;
+      border-radius:8px;
+      box-shadow:0 4px 12px rgba(0,0,0,.2);
+      z-index:9999
+    `;
     progresoModal.innerText = "Subiendo imagen... 0%";
     document.body.appendChild(progresoModal);
 
@@ -78,20 +90,20 @@ fileInput.addEventListener("change", async (e) => {
       progresoModal.innerText = `Subiendo imagen... ${pct}%`;
     });
 
-    // Esperar a completar
+    // Esperar a que termine
     await uploadTask;
     const url = await ref.getDownloadURL();
 
-    // Guardar documento en Firestore
+    // Guardar en Firestore
     const docRef = await db.collection("galeria").add({
       url: url,
       fecha: firebase.firestore.FieldValue.serverTimestamp()
     });
 
-    // Mostrar en la UI (sin recargar)
+    // Mostrar en UI
     mostrarImagenAdmin(docRef.id, url);
 
-    // limpiar input y remover modal
+    // limpiar input y modal
     fileInput.value = "";
     progresoModal.remove();
 
@@ -101,17 +113,14 @@ fileInput.addEventListener("change", async (e) => {
   }
 });
 
-// Eliminar imagen: borrar doc de Firestore y archivo en Storage
+// Eliminar imagen y doc
 async function eliminarImagen(docId, url, elementoDOM) {
   try {
-    // borrar documento
     await db.collection("galeria").doc(docId).delete();
 
-    // borrar archivo en storage -> usar refFromURL
     const ref = storage.refFromURL(url);
     await ref.delete();
 
-    // quitar del DOM
     if (elementoDOM && elementoDOM.remove) elementoDOM.remove();
   } catch (error) {
     alert("Error al eliminar: " + error.message);
