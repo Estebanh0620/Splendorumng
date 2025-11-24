@@ -80,13 +80,11 @@ Sitio web estático para la empresa **Splendor Herbs**. Incluye páginas públic
 3. Clic derecho sobre `index.html` → **Open with Live Server**.
 4. Navega a `http://127.0.0.1:5500/Splendorumng/` (según tu ruta).
 
-### Opción B — Servidor HTTP simple (Python 3)
-```bash
-# en la carpeta que contiene el proyecto
-python -m http.server 5500
-# luego visita:
-# http://127.0.0.1:5500/Splendorumng/
-```
+### Opción B — link
+
+https://estebanh0620.github.io/Splendorumng/
+// Función para cargar HTML 
+
 
 ---
 

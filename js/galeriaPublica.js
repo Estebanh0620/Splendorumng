@@ -1,27 +1,33 @@
-const db = firebase.firestore();
+// js/galeriaPublica.js
 
-// balanceo de columnas (se llena la menos alta)
-function getShorterColumn() {
-    const col1 = document.getElementById("columna1");
-    const col2 = document.getElementById("columna2");
+const colPub1 = document.getElementById('columna1');
+const colPub2 = document.getElementById('columna2');
 
-    return col1.offsetHeight <= col2.offsetHeight ? col1 : col2;
-}
+db.collection('galeria')
+  .orderBy('createdAt', 'desc')
+  .onSnapshot((snapshot) => {
+    colPub1.innerHTML = '';
+    colPub2.innerHTML = '';
+    let index = 0;
 
-async function cargarGaleria() {
-    const snap = await db.collection("galeria")
-        .orderBy("fecha", "desc") // últimas primero
-        .get();
+    snapshot.forEach((doc) => {
+      const data = doc.data();
+      if (!data.url) return;
 
-    snap.forEach(doc => {
-        const data = doc.data();
-        const img = document.createElement("img");
-        img.src = data.url;
-        img.alt = "imagen galeria";
+      const card = document.createElement('div');
+      card.className = 'item-galeria-publica';
 
-        const colDestino = getShorterColumn();
-        colDestino.appendChild(img);
+      const img = document.createElement('img');
+      img.src = data.url;
+      img.alt = 'Imagen de la galería';
+
+      card.appendChild(img);
+
+      if (index % 2 === 0) {
+        colPub1.appendChild(card);
+      } else {
+        colPub2.appendChild(card);
+      }
+      index++;
     });
-}
-
-cargarGaleria();
+  });

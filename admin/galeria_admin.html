@@ -1,3 +1,4 @@
+// Función para cargar HTML externo
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -13,8 +14,10 @@
   </a>
 <h2 class="titulo">Editar galería</h2>
 
-<input type="file" id="fileInput" accept="image/*" hidden>
+<input type="file" id="fileInput" accept="image/*" style="display:none;">
 <button class="btnSubir" onclick="document.getElementById('fileInput').click()">+ Subir imagen</button>
+
+<div id="status" style="text-align:center;margin-top:12px;color:#333;font-size:14px;"></div>
 
 <div class="columnasgaleria">
     <div class="galeria1" id="col1"></div>
@@ -24,6 +27,7 @@
 <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-storage.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
 
 <script src="js/firebase.js"></script>
 <script src="js/admin_galeria.js"></script>
